@@ -26,14 +26,18 @@
         <td>Key Delivered</td>
     </tr>
     @for (int i = 1; i <= 25; i++) {
+       
+        Random rnd = new Random();
+        int rndNum = i * rnd.Next(100,10000);
+        
         <tr>
             <td>@i</td>
             <td>billy</td>
             <td>bob</td>
-            <td>today</td>
-            <td>n/a</td>
-            <td>n/a</td>
-            <td>n/a</td>
+            <td>@rndNum</td>
+            <td>@DateTime.Now</td>
+            <td>Not Approved</td>
+            <td>Not Deleivered</td>
         </tr>
     }
 </table>

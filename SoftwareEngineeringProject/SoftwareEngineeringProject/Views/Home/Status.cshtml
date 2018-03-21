@@ -1,4 +1,20 @@
-﻿@{
-    ViewData["Title"] = "About";
-}
-<h1>Status</h1>
+﻿<h2>Your Key Status'</h2>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <td>Request ID</td>
+        <td>Submission Date</td>
+        <td>Approval Date</td>
+        <td>Key Delivered</td>
+    </tr>
+    @for (int i = 1; i <= 5; i++) {
+        Random rnd = new Random();
+        int rndNum = i * rnd.Next(100, 10000);
+        <tr>
+            <td>@rndNum</td>
+            <td>@DateTime.Now</td>
+            <td>Not Approved</td>
+            <td>Not Delivered</td>
+        </tr>
+    }
+</table>
