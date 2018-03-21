@@ -4,4 +4,31 @@
 @{
 }
 
-<h1>Approve</h1>
+<h2>Approve Keys</h2>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Banner ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Room Number</th>
+        <th>Key Or FOB</th>
+        <th>Request ID</th>
+        <th>Approve</th>
+    </tr>
+    @for (int i = 1; i <= 10; i++) {
+        Random rnd = new Random();
+        int rndNum = i * rnd.Next(100, 10000);
+        int roomNum = rnd.Next(100, 300);
+        int isKey = rnd.Next(1,3);
+        <tr>
+            <td>@i</td>
+            <td>billy</td>
+            <td>bob</td>
+            <td>E @roomNum</td>
+            <td>@(isKey==1?"Key":"FOB")</td>
+            <td>@rndNum</td>
+            <td><a href="#">Approve</a></td>
+        </tr>
+     }
+</table>

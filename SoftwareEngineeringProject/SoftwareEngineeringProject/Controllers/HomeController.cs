@@ -16,7 +16,6 @@ namespace SoftwareEngineeringProject.Controllers
         }
 
         public IActionResult Approve() {
-            ViewData["Message"] = "Your contact page.";
 
             return View();
         }
