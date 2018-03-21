@@ -4,4 +4,36 @@
 @{
 }
 
-<h1>Lookup</h1>
+<h2>Data Lookup</h2>
+<div class="row">
+    <form>
+        <div class="form-group col-md-4">
+            <label for="search">Search:</label>
+            <input id="search" class="form-control" type="text" placeholder="Search" />
+        </div>
+    </form>
+</div>
+
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <td>ID</td>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Request ID</td>
+        <td>Submission Date</td>
+        <td>Approval Date</td>
+        <td>Key Delivered</td>
+    </tr>
+    @for (int i = 1; i <= 25; i++) {
+        <tr>
+            <td>@i</td>
+            <td>billy</td>
+            <td>bob</td>
+            <td>today</td>
+            <td>n/a</td>
+            <td>n/a</td>
+            <td>n/a</td>
+        </tr>
+    }
+</table>
