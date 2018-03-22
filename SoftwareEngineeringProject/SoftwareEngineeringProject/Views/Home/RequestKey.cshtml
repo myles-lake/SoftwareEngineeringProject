@@ -2,3 +2,31 @@
     ViewData["Title"] = "Request";
 }
 <h1>Request</h1>
+
+<form method="post">
+    <table id="keyRequest" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Campus</th>
+                <th>Room Number</th>
+                <th>Reason for Access</th>
+            </tr>
+        </thead>
+        <tr>
+            <td><input type="text" name="campus" /></td>
+            <td><input type="text" name="roomNumber" /></td>
+            <td><input type="text" name="reasonForAccess" /></td>
+        </tr>
+    </table>
+    <button runat="server" onclick="addKeyRequest(); return false;">Add Key Request</button>
+    <input type="submit" name="requestKeys" value="Request Room Access" />
+</form>
+
+<script type="text/javascript">
+    console.log("it ran");
+    function addKeyRequest() {
+        $("#keyRequest tbody tr:first").clone().find("input").each(function () {
+            $(this).val('');
+        }).end().appendTo("#keyRequest");
+    }
+</script>
