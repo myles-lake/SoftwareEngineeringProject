@@ -2,6 +2,8 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    string[] name = new string[] { "Bill", "Dana", "Alex", "Myles", "Michael", "Carter", "Tyler", "Bob", "Joey", "Tammy", "Sarah" };
+    string[] lname = new string[] { "Smith", "Doe", "Birch", "Brown", "Jones", "Johnson", "Williams", "Hall", "Young", "King", "Scott" };
 }
 
 <h2>Data Lookup</h2>
@@ -26,14 +28,16 @@
         <th>Key Delivered</th>
     </tr>
     @for (int i = 1; i <= 25; i++) {
-       
+
         Random rnd = new Random();
         int rndNum = i * rnd.Next(100,10000);
-        
+        int rndName = rnd.Next(0,name.Length);
+        int rndLName = rnd.Next(0, lname.Length);
+
         <tr>
             <td>@i</td>
-            <td>billy</td>
-            <td>bob</td>
+            <td>@name[rndName]</td>
+            <td>@name[rndLName]</td>
             <td>@rndNum</td>
             <td>@DateTime.Now</td>
             <td>Not Approved</td>

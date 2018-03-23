@@ -22,6 +22,7 @@ namespace SoftwareEngineeringProject.Controllers
 
         public IActionResult Lookup() {
             ViewData["Message"] = "Your contact page.";
+            
 
             return View();
         }
