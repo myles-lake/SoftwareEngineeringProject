@@ -15,29 +15,13 @@ namespace SoftwareEngineeringProject.Controllers
             return View();
         }
 
-        public IActionResult Approve() {
+        
 
-            return View();
-        }
+        
 
-        public IActionResult Lookup() {
-            ViewData["Message"] = "Your contact page.";
-            
 
-            return View();
-        }
 
-        public IActionResult RequestKey() {
-            ViewData["Message"] = "Your contact page.";
 
-            return View();
-        }
-
-        public IActionResult Status() {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
 
         public IActionResult Error()
         {
