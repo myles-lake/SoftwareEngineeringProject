@@ -25,15 +25,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Key Manager</a>
+                </button> 
             </div>
             <div class="navbar-collapse collapse">
+                <img class="navbar-left" src="~/images/mohawkimagetransp.png" height="40" width="40" />
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="RequestKey" asp-action="RequestKey">Request Keys</a></li>
-                    <li><a asp-area="" asp-controller="Status" asp-action="Status">Key Status</a></li>
-                    <li><a asp-area="" asp-controller="Lookup" asp-action="Lookup">Data Lookup</a></li>
-                    <li><a asp-area="" asp-controller="Approve" asp-action="Approve">Approve Keys</a></li>
+                    <li></li>
+                    <li><a id="a" asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Key Manager</a></li>
+                    <li><a id="a" asp-area="" asp-controller="RequestKey" asp-action="RequestKey">Request Keys</a></li>
+                    <li><a id="a" asp-area="" asp-controller="Status" asp-action="Status">Key Status</a></li>
+                    <li><a id="a" asp-area="" asp-controller="Lookup" asp-action="Lookup">Data Lookup</a></li>
+                    <li><a id="a" asp-area="" asp-controller="Approve" asp-action="Approve">Approve Keys</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>

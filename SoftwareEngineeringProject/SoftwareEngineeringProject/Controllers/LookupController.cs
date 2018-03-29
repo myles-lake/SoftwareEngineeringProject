@@ -8,7 +8,7 @@ namespace SoftwareEngineeringProject.Controllers
 {
     public class LookupController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index() 
         {
             return View();
         }

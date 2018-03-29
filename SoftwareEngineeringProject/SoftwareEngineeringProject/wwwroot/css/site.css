@@ -26,6 +26,19 @@
     margin: 15px;
 }
 
+#a:hover {
+    background-color: #990033;
+}
+
+#a {
+    color: white;
+}
+
+.active {
+    background-color: #661133;
+}
+
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */

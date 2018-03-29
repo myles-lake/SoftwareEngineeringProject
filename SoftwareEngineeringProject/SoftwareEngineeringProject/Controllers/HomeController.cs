@@ -15,13 +15,6 @@ namespace SoftwareEngineeringProject.Controllers
             return View();
         }
 
-        
-
-        
-
-
-
-
 
         public IActionResult Error()
         {
