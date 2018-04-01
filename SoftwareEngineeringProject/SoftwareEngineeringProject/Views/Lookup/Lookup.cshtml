@@ -2,9 +2,14 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    @using System.Data;
+
+    DataSet dataSet = (DataSet)ViewData["test"];
     string[] name = new string[] { "Bill", "Dana", "Alex", "Myles", "Michael", "Carter", "Tyler", "Bob", "Joey", "Tammy", "Sarah" };
     string[] lname = new string[] { "Smith", "Doe", "Birch", "Brown", "Jones", "Johnson", "Williams", "Hall", "Young", "King", "Scott" };
 }
+
+<h1>@ViewData["test"]</h1>
 
 <h2>Data Lookup</h2>
 <div class="row">
@@ -15,6 +20,30 @@
         </div>
     </form>
 </div>
+@foreach (DataTable table in dataSet.Tables)
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                @foreach (DataColumn col in table.Columns)
+                {
+                    <th>@col.ColumnName</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (DataRow row in table.Rows)
+            {
+                <tr>
+                    @foreach (DataColumn col in table.Columns)
+                    {
+                        <td>@row[col.ColumnName]</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
 
 <table class="table table-bordered table-striped">
@@ -27,11 +56,12 @@
         <th>Approval Date</th>
         <th>Key Delivered</th>
     </tr>
-    @for (int i = 1; i <= 25; i++) {
+    @for (int i = 1; i <= 25; i++)
+    {
 
         Random rnd = new Random();
-        int rndNum = i * rnd.Next(100,10000);
-        int rndName = rnd.Next(0,name.Length);
+        int rndNum = i * rnd.Next(100, 10000);
+        int rndName = rnd.Next(0, name.Length);
         int rndLName = rnd.Next(0, lname.Length);
 
         <tr>
