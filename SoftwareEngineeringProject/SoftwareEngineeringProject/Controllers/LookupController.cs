@@ -18,7 +18,7 @@ namespace SoftwareEngineeringProject.Controllers
 
         public IActionResult Lookup() {
             ViewData["Message"] = "Your contact page.";
-            string connString = "Server=(localdb)\\mssqllocaldb;Database=Key_Manager;Trusted_Connection=True;MultipleActiveResultSets=true";
+            string connString = "Data Source=(LocalDb)\\MSSQLLocalDB;Initial Catalog=aspnet-SoftwareEngineeringProject-704B70CD-4566-4C68-8E3F-9951B3FBE94A;Integrated Security=True";
             string query =  "SELECT r.Id, r.Requestor, u.user_type, " +
                             "u.first_name, u.last_name, u.campus, " +
                             "u.department, u.phone, r.Creation_Date, " +

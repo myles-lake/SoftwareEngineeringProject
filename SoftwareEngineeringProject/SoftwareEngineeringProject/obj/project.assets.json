@@ -13125,24 +13125,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\test\\.nuget\\packages\\": {},
+    "C:\\Users\\Myles\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\test\\Documents\\SchoolStuff\\software\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject.csproj",
+      "projectUniqueName": "C:\\Users\\Myles\\Source\\Repos\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject.csproj",
       "projectName": "SoftwareEngineeringProject",
-      "projectPath": "C:\\Users\\test\\Documents\\SchoolStuff\\software\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject.csproj",
-      "packagesPath": "C:\\Users\\test\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\test\\Documents\\SchoolStuff\\software\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\obj\\",
+      "projectPath": "C:\\Users\\Myles\\Source\\Repos\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject.csproj",
+      "packagesPath": "C:\\Users\\Myles\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Myles\\Source\\Repos\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\test\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Myles\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
