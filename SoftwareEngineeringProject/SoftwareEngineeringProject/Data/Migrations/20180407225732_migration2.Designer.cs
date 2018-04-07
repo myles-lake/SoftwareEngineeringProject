@@ -11,9 +11,10 @@ using System;
 namespace SoftwareEngineeringProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180407225732_migration2")]
+    partial class migration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -128,7 +129,7 @@ namespace SoftwareEngineeringProject.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("SoftwareEngineeringProject.Data.KeyRequest", b =>
+            modelBuilder.Entity("SoftwareEngineeringProject.Data.keyRequest", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -142,7 +143,7 @@ namespace SoftwareEngineeringProject.Data.Migrations
                     b.ToTable("KeyRequest");
                 });
 
-            modelBuilder.Entity("SoftwareEngineeringProject.Data.KeyRequestLines", b =>
+            modelBuilder.Entity("SoftwareEngineeringProject.Data.keyRequestLines", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -169,8 +170,6 @@ namespace SoftwareEngineeringProject.Data.Migrations
 
                     b.Property<string>("Code")
                         .HasMaxLength(4);
-
-                    b.Property<string>("RoomID");
 
                     b.Property<string>("Type")
                         .HasMaxLength(10);

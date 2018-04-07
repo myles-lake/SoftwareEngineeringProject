@@ -25,8 +25,8 @@ namespace SoftwareEngineeringProject.Data
         }
         // makes the room table
         public DbSet<Room> Rooms { get; set; }
-        public DbSet<keyRequestLines> KeyRequestLines { get; set; }
-        public DbSet<keyRequest> KeyRequest { get; set; }
+        public DbSet<KeyRequestLines> KeyRequestLines { get; set; }
+        public DbSet<KeyRequest> KeyRequest { get; set; }
         // makes the room table
 
         public DbSet<SoftwareEngineeringProject.Models.ApplicationUser> ApplicationUser { get; set; }
@@ -36,12 +36,13 @@ namespace SoftwareEngineeringProject.Data
     public class Room
     {
         public int Id { get; set; }
+        public string RoomID { get; set; }
         [MaxLength(4)]
         public string Code { get; set; }
         [MaxLength(10)]
         public string Type { get; set; }
     }
-    public class keyRequest
+    public class KeyRequest
     {
         public int Id { get; set; }
         
@@ -51,7 +52,7 @@ namespace SoftwareEngineeringProject.Data
 
 
     }
-    public class keyRequestLines
+    public class KeyRequestLines
     {
         public int Id { get; set; }
 
