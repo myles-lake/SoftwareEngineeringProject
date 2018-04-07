@@ -76,9 +76,7 @@ namespace SoftwareEngineeringProject
             var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
             var roleManager = serviceProvider.GetService<RoleManager<IdentityRole>>();
             SeedData(userManager, roleManager).Wait();
-            // runs the migration scripts which create the database automatically on setup or when changes are made
-            //context.Database.Migrate();
-            
+
             SeedData(userManager, roleManager).Wait();
         }
 
