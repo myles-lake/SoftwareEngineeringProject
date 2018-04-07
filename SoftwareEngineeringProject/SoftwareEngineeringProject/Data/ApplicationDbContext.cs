@@ -35,7 +35,7 @@ namespace SoftwareEngineeringProject.Data
     // sets up the rooms table and all of its propertoes
     public class Room
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         [MaxLength(4)]
         public string Code { get; set; }
         [MaxLength(10)]

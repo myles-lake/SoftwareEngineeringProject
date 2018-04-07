@@ -35,17 +35,16 @@ namespace SoftwareEngineeringProject.Models.AccountViewModels
         public string Campus { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [StringLength(6, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 4)]
         [Display(Name = "Room")]
         public string Room { get; set; }
 
         [Required]
-        [Phone(]
+        [Phone]
         [Display(Name = "Phone")]
         public string Phone { get; set; }
 
         [Required]
-        [Key]
         [Display(Name = "Banner ID")]
         public string BannerID { get; set; }
     }

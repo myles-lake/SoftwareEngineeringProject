@@ -220,7 +220,7 @@ namespace SoftwareEngineeringProject.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email};
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, BannerID = int.Parse(model.BannerID), PhoneNumber = model.Phone, Department = model.Department, Campus = model.Campus, Room = model.Room};
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
