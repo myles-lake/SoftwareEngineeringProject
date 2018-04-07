@@ -128,12 +128,11 @@ namespace SoftwareEngineeringProject
 
             // applies the role of admin to the user with account
             // successfully applies the role to the created account, doesn't seem to add roles to the previous admin account created above
-            var user = await userManager.FindByEmailAsync("myles52@live.ca");
+            var user = await userManager.FindByEmailAsync("tyvdm9@gmail.com");
             if (!await userManager.IsInRoleAsync(user, "admin"))
             {
                 await userManager.AddToRoleAsync(user, "admin");
             }
-
         }
     }
 }

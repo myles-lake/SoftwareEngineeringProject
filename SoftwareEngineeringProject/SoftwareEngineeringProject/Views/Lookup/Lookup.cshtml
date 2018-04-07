@@ -4,7 +4,7 @@
 @{
     @using System.Data;
 
-    DataSet dataSet = (DataSet)ViewData["test"];
+    List<String> data = (List<String>)ViewData["test"];
     string[] name = new string[] { "Bill", "Dana", "Alex", "Myles", "Michael", "Carter", "Tyler", "Bob", "Joey", "Tammy", "Sarah" };
     string[] lname = new string[] { "Smith", "Doe", "Birch", "Brown", "Jones", "Johnson", "Williams", "Hall", "Young", "King", "Scott" };
 }
@@ -20,27 +20,20 @@
         </div>
     </form>
 </div>
-@foreach (DataTable table in dataSet.Tables)
+
+
 {
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
-                @foreach (DataColumn col in table.Columns)
+                @foreach (String values in data)
                 {
-                    <th>@col.ColumnName</th>
+                    <th>values</th>
                 }
             </tr>
         </thead>
         <tbody>
-            @foreach (DataRow row in table.Rows)
-            {
-                <tr>
-                    @foreach (DataColumn col in table.Columns)
-                    {
-                        <td>@row[col.ColumnName]</td>
-                    }
-                </tr>
-            }
+           
         </tbody>
     </table>
 }

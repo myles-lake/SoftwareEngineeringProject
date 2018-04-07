@@ -25,6 +25,8 @@ namespace SoftwareEngineeringProject.Data
         }
         // makes the room table
         public DbSet<Room> Rooms { get; set; }
+        // makes the room table
+        public DbSet<SoftwareEngineeringProject.Models.ApplicationUser> ApplicationUser { get; set; }
     }
 
     // sets up the rooms table and all of its propertoes
