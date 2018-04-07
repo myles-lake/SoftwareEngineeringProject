@@ -109,33 +109,6 @@ namespace SoftwareEngineeringProject
                     Name = "locksmith"
                 });
             }
-
-            // creates a default admin user for the site to use
-            // doesn't seem to be making the user
-            if (userManager.FindByNameAsync("admin").Result == null)
-            {
-                ApplicationUser application = new ApplicationUser
-                {
-                    UserName = "admin",
-                    Email = "admin@mohawkcollege.ca"
-                };
-
-                IdentityResult identity = userManager.CreateAsync(application, "password").Result;
-
-                if (identity.Succeeded)
-                {
-                    userManager.AddToRoleAsync(application, "admin").Wait();
-                }
-            }
-
-            // applies the role of admin to the user with account
-            // successfully applies the role to the created account, doesn't seem to add roles to the previous admin account created above
-            //var user = await userManager.FindByEmailAsync("myles52@live.ca");
-            //if (!await userManager.IsInRoleAsync(user, "admin"))
-            //{
-            //    await userManager.AddToRoleAsync(user, "admin");
-            //}
-
         }
     }
 }
