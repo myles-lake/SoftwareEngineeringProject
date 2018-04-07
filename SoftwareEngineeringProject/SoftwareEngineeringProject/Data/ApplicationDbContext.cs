@@ -25,17 +25,47 @@ namespace SoftwareEngineeringProject.Data
         }
         // makes the room table
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<keyRequestLines> KeyRequestLines { get; set; }
+        public DbSet<keyRequest> KeyRequest { get; set; }
         // makes the room table
+
         public DbSet<SoftwareEngineeringProject.Models.ApplicationUser> ApplicationUser { get; set; }
     }
 
     // sets up the rooms table and all of its propertoes
     public class Room
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         [MaxLength(4)]
         public string Code { get; set; }
         [MaxLength(10)]
         public string Type { get; set; }
     }
+    public class keyRequest
+    {
+        public int Id { get; set; }
+        
+        public DateTime Creation_Date { get; set; }
+        
+        public int Requestor { get; set; }
+
+
+    }
+    public class keyRequestLines
+    {
+        public int Id { get; set; }
+
+        public int KeyRequestId { get; set; }
+
+        public DateTime CompletedDate { get; set; }
+
+        public DateTime ApprovalDate { get; set; }
+
+        public string status { get; set; }
+        
+        public string Room { get; set; }
+
+    }
+
+
 }
