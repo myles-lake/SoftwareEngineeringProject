@@ -64,10 +64,19 @@ namespace SoftwareEngineeringProject
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-           
-
             // runs the migration scripts which create the database automatically on setup or when changes are made
             var context = serviceProvider.GetService<ApplicationDbContext>();
+
+
+
+            context.Database.Migrate();
+            DbInitializer.Initialize(context);
+
+            // seeds the data
+            var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
+            var roleManager = serviceProvider.GetService<RoleManager<IdentityRole>>();
+            SeedData(userManager, roleManager).Wait();
+            // runs the migration scripts which create the database automatically on setup or when changes are made
             context.Database.Migrate();
 
             var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
@@ -111,30 +120,13 @@ namespace SoftwareEngineeringProject
                 });
             }
 
-            // creates a default admin user for the site to use
-            // doesn't seem to be making the user
-            if (userManager.FindByNameAsync("admin").Result == null)
-            {
-                ApplicationUser application = new ApplicationUser();
-                application.UserName = "admin";
-                application.Email = "admin@mohawkcollege.ca";
-
-                IdentityResult identity = userManager.CreateAsync(application, "password").Result;
-
-                if (identity.Succeeded)
-                {
-                    userManager.AddToRoleAsync(application, "admin").Wait();
-                }
-            }
-        
-            
             // applies the role of admin to the user with account
             // successfully applies the role to the created account, doesn't seem to add roles to the previous admin account created above
-            var user = await userManager.FindByEmailAsync("carter.layton.vamveen@gmail.com");
-            if (!await userManager.IsInRoleAsync(user, "admin"))
-            {
-                await userManager.AddToRoleAsync(user, "admin");
-            }
+            // var user = await userManager.FindByEmailAsync("myles52@live.ca");
+            // if (!await userManager.IsInRoleAsync(user, "admin"))
+            // {
+            //    await userManager.AddToRoleAsync(user, "admin");
+            // }
 
         }
     }

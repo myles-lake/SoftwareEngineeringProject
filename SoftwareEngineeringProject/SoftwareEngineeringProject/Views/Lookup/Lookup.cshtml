@@ -1,10 +1,12 @@
-﻿@*
+﻿@model IEnumerable<SoftwareEngineeringProject.Data.Room>
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
     @using System.Data;
+    @using SoftwareEngineeringProject.Data;
 
-    DataSet dataSet = (DataSet)ViewData["test"];
+    Room[] data = (Room[])ViewData["test"];
     string[] name = new string[] { "Bill", "Dana", "Alex", "Myles", "Michael", "Carter", "Tyler", "Bob", "Joey", "Tammy", "Sarah" };
     string[] lname = new string[] { "Smith", "Doe", "Birch", "Brown", "Jones", "Johnson", "Williams", "Hall", "Young", "King", "Scott" };
 }
@@ -20,30 +22,35 @@
         </div>
     </form>
 </div>
-@foreach (DataTable table in dataSet.Tables)
-{
-    <table class="table table-bordered table-striped">
-        <thead>
+
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
             <tr>
-                @foreach (DataColumn col in table.Columns)
-                {
-                    <th>@col.ColumnName</th>
-                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (DataRow row in table.Rows)
-            {
-                <tr>
-                    @foreach (DataColumn col in table.Columns)
-                    {
-                        <td>@row[col.ColumnName]</td>
-                    }
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+        }
+    </tbody>
+</table>
+
 
 
 <table class="table table-bordered table-striped">
