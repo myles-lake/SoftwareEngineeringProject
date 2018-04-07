@@ -25,18 +25,15 @@ namespace SoftwareEngineeringProject.Models.AccountViewModels
         public string ConfirmPassword { get; set; }
         
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
         [Display(Name = "Department")]
         public string Department { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
         [Display(Name = "Campus")]
         public string Campus { get; set; }
 
         [Required]
-        [StringLength(6, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 4)]
-        [Display(Name = "Room")]
+        [Display(Name = "Office")]
         public string Room { get; set; }
 
         [Required]
@@ -47,5 +44,9 @@ namespace SoftwareEngineeringProject.Models.AccountViewModels
         [Required]
         [Display(Name = "Banner ID")]
         public string BannerID { get; set; }
+
+        [Required]
+        [Display(Name = "Associate Dean ID")]
+        public string AssociateDeanID { get; set; }
     }
 }
