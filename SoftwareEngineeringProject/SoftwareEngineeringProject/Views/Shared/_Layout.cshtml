@@ -34,7 +34,12 @@
                     <li><a id="a" asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Key Manager</a></li>
                     <li><a id="a" asp-area="" asp-controller="RequestKey" asp-action="RequestKey">Request Keys</a></li>
                     <li><a id="a" asp-area="" asp-controller="Status" asp-action="Status">Key Status</a></li>
-                    <li><a id="a" asp-area="" asp-controller="Lookup" asp-action="Lookup">Data Lookup</a></li>
+                    <!--makes it so that non admins can't see the route-->
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li><a id="a" asp-area="" asp-controller="Lookup" asp-action="Lookup">Data Lookup</a></li>
+                    }
+                    
                     <li><a id="a" asp-area="" asp-controller="Approve" asp-action="Approve">Approve Keys</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")

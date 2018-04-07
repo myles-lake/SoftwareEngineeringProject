@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SoftwareEngineeringProject.Models;
 
 namespace SoftwareEngineeringProject.Controllers
 {
+    // checks that the user is admin before running the controller
+    [Authorize(Roles = "admin")]
     public class LookupController : Controller
     {
 

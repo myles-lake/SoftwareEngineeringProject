@@ -40,7 +40,7 @@ namespace SoftwareEngineeringProject
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -63,6 +63,77 @@ namespace SoftwareEngineeringProject
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
+            var roleManager = serviceProvider.GetService<RoleManager<IdentityRole>>();
+            SeedData(userManager, roleManager).Wait();
+
+            // runs the migration scripts which create the database automatically on setup or when changes are made
+            var context = serviceProvider.GetService<ApplicationDbContext>();
+            context.Database.Migrate();
+        }
+
+        // Creates data that can be used by the sites on creation, default users, rooms, etc...
+        public async Task SeedData(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        {
+            // creating all of the roles that users can have
+            if (!await roleManager.RoleExistsAsync("admin"))
+            {
+                await roleManager.CreateAsync(new IdentityRole
+                {
+                    Name = "admin"
+                });
+            }
+
+            if (!await roleManager.RoleExistsAsync("instructor"))
+            {
+                await roleManager.CreateAsync(new IdentityRole
+                {
+                    Name = "instructor"
+                });
+            }
+
+            if (!await roleManager.RoleExistsAsync("security"))
+            {
+                await roleManager.CreateAsync(new IdentityRole
+                {
+                    Name = "security"
+                });
+            }
+
+            if (!await roleManager.RoleExistsAsync("locksmith"))
+            {
+                await roleManager.CreateAsync(new IdentityRole
+                {
+                    Name = "locksmith"
+                });
+            }
+
+            // creates a default admin user for the site to use
+            // doesn't seem to be making the user
+            if (userManager.FindByNameAsync("admin").Result == null)
+            {
+                ApplicationUser application = new ApplicationUser();
+                application.UserName = "admin";
+                application.Email = "admin@mohawkcollege.ca";
+
+                IdentityResult identity = userManager.CreateAsync(application, "password").Result;
+
+                if (identity.Succeeded)
+                {
+                    userManager.AddToRoleAsync(application, "admin").Wait();
+                }
+            }
+
+
+            // applies the role of admin to the user with account
+            // successfully applies the role to the created account, doesn't seem to add roles to the previous admin account created above
+            var user = await userManager.FindByEmailAsync("myles52@live.ca");
+            if (!await userManager.IsInRoleAsync(user, "admin"))
+            {
+                await userManager.AddToRoleAsync(user, "admin");
+            }
+
         }
     }
 }
