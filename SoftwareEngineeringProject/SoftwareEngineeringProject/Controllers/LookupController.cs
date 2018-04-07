@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SoftwareEngineeringProject.Data;
 using SoftwareEngineeringProject.Models;
 
@@ -26,10 +27,8 @@ namespace SoftwareEngineeringProject.Controllers
             return View();
         }
 
-        public IActionResult Lookup() {
+        public async Task<IActionResult> Lookup() {
             ViewData["Message"] = "Your contact page.";
-
-            ViewData["data"] = _context.Rooms.ToList();
 
             //ApplicationDbContext context = new ApplicationDbContext();
 
@@ -50,7 +49,7 @@ namespace SoftwareEngineeringProject.Controllers
 
 
 
-            return View();
+            return View(await _context.Rooms.ToListAsync());
         }
     }
 }
