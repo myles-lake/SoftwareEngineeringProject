@@ -40,7 +40,7 @@ namespace SoftwareEngineeringProject.Models.AccountViewModels
         public string Room { get; set; }
 
         [Required]
-        [Phone(]
+        [Phone]
         [Display(Name = "Phone")]
         public string Phone { get; set; }
 
