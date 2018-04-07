@@ -67,7 +67,7 @@ namespace SoftwareEngineeringProject
             // runs the migration scripts which create the database automatically on setup or when changes are made
             var context = serviceProvider.GetService<ApplicationDbContext>();
 
-            
+
 
             context.Database.Migrate();
             DbInitializer.Initialize(context);
@@ -115,6 +115,15 @@ namespace SoftwareEngineeringProject
                     Name = "locksmith"
                 });
             }
+
+            // applies the role of admin to the user with account
+            // successfully applies the role to the created account, doesn't seem to add roles to the previous admin account created above
+            // var user = await userManager.FindByEmailAsync("myles52@live.ca");
+            // if (!await userManager.IsInRoleAsync(user, "admin"))
+            // {
+            //    await userManager.AddToRoleAsync(user, "admin");
+            // }
+
         }
     }
 }
