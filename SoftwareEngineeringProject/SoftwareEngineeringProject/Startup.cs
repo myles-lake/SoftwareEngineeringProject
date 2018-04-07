@@ -64,7 +64,12 @@ namespace SoftwareEngineeringProject
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            
+            // runs the migration scripts which create the database automatically on setup or when changes are made
+            var context = serviceProvider.GetService<ApplicationDbContext>();
+
+            DbInitializer.Initialize(context);
+
+            context.Database.Migrate();
 
             // seeds the data
             var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
