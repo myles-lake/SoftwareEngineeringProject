@@ -77,7 +77,7 @@ namespace SoftwareEngineeringProject
             var roleManager = serviceProvider.GetService<RoleManager<IdentityRole>>();
             SeedData(userManager, roleManager).Wait();
 
-            SeedData(userManager, roleManager).Wait();
+            
         }
 
         // Creates data that can be used by the sites on creation, default users, rooms, etc...
