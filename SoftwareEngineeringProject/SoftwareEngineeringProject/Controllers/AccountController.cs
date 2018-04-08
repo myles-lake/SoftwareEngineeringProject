@@ -222,10 +222,12 @@ namespace SoftwareEngineeringProject.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, BannerID = int.Parse(model.BannerID), PhoneNumber = model.Phone, Department = model.Department, Campus = model.Campus, Room = model.Room, AssociateDeanID = int.Parse(model.AssociateDeanID)};
                 var result = await _userManager.CreateAsync(user, model.Password);
-                await _userManager.AddToRoleAsync(user, model.Role);
+                
 
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, model.Role);
+
                     _logger.LogInformation("User created a new account with password.");
                     
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
