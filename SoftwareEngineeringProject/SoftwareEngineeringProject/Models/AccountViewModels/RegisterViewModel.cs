@@ -45,7 +45,6 @@ namespace SoftwareEngineeringProject.Models.AccountViewModels
         [Display(Name = "Banner ID")]
         public string BannerID { get; set; }
 
-        [Required]
         [Display(Name = "Associate Dean ID")]
         public string AssociateDeanID { get; set; }
 

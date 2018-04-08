@@ -31,6 +31,7 @@ namespace SoftwareEngineeringProject.Data
                     Room = "Q101"
                 };
                 await userManager.CreateAsync(user, "Admin1!");
+                await userManager.AddToRoleAsync(user, "admin");
             }
 
             if (await userManager.FindByNameAsync("instructor@mohawkcollege.ca") == null)
@@ -47,6 +48,7 @@ namespace SoftwareEngineeringProject.Data
                     Room = "Q200"
                 };
                 await userManager.CreateAsync(user, "Instructor1!");
+                await userManager.AddToRoleAsync(user, "instructor");
             }
 
             if (await userManager.FindByNameAsync("security@mohawkcollege.ca") == null)
@@ -63,6 +65,7 @@ namespace SoftwareEngineeringProject.Data
                     Room = "C120"
                 };
                 await userManager.CreateAsync(user, "Security1!");
+                await userManager.AddToRoleAsync(user, "security");
             }
 
             if (await userManager.FindByNameAsync("locksmith@mohawkcollege.ca") == null)
@@ -79,6 +82,7 @@ namespace SoftwareEngineeringProject.Data
                     Room = "B100"
                 };
                 await userManager.CreateAsync(user, "Locksmith1!");
+                await userManager.AddToRoleAsync(user, "locksmith");
             }
 
             // rooms
