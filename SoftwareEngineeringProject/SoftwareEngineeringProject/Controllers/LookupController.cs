@@ -28,7 +28,6 @@ namespace SoftwareEngineeringProject.Controllers
         }
 
         public async Task<IActionResult> Lookup() {
-            ViewData["Message"] = "Your contact page.";
 
             //ApplicationDbContext context = new ApplicationDbContext();
 
@@ -47,9 +46,14 @@ namespace SoftwareEngineeringProject.Controllers
 
             //ViewData["test"] = dataset;
 
+            var data = _context.KeyRequestLines
+                //.Include(krl => krl.Rooms)
+                .Include(krl => krl.KeyRequest)
+                    //.ThenInclude(kr => kr.ApplicationUser)
+                .AsNoTracking();
 
-
-            return View(await _context.Rooms.ToListAsync());
+            return View(await data.ToListAsync());
+            //await _context.Rooms.ToListAsync()
         }
     }
 }

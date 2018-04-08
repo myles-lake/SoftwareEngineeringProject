@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using SoftwareEngineeringProject.Data;
 
 namespace SoftwareEngineeringProject.Models
 {
@@ -14,5 +16,7 @@ namespace SoftwareEngineeringProject.Models
         public string Campus { get; set; }
         public string Room { get; set; }
         public int AssociateDeanID { get; set; }
+        //[ForeignKey("Requestor")]
+        //public ICollection<KeyRequest> KeyRequest { get; set; }
     }
 }

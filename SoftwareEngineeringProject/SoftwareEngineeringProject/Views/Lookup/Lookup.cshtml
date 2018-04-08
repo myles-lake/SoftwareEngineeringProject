@@ -1,17 +1,4 @@
-﻿@model IEnumerable<SoftwareEngineeringProject.Data.Room>
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-    @using System.Data;
-    @using SoftwareEngineeringProject.Data;
-
-    Room[] data = (Room[])ViewData["test"];
-    string[] name = new string[] { "Bill", "Dana", "Alex", "Myles", "Michael", "Carter", "Tyler", "Bob", "Joey", "Tammy", "Sarah" };
-    string[] lname = new string[] { "Smith", "Doe", "Birch", "Brown", "Jones", "Johnson", "Williams", "Hall", "Young", "King", "Scott" };
-}
-
-<h1>@ViewData["test"]</h1>
+﻿@model IEnumerable<SoftwareEngineeringProject.Data.KeyRequestLines>
 
 <h2>Data Lookup</h2>
 <div class="row">
@@ -24,61 +11,87 @@
 </div>
 
 
-
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Code)
+                @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Type)
+                @Html.DisplayNameFor(model => model.KeyRequest.Requestor)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.KeyRequest.Id)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.KeyRequest.ApplicationUser.AssociateDeanID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KeyRequest.ApplicationUser.Campus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KeyRequest.ApplicationUser.Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KeyRequest.ApplicationUser.Room)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Room)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.Rooms.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rooms.Type)
+        </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KeyRequest.Creation_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompletedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApprovalDate)
             </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Code)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Type)
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KeyRequest.Requestor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KeyRequestId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Room)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KeyRequest.Creation_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompletedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovalDate)
+            </td>
+        </tr>
         }
     </tbody>
 </table>
 
 
 
-<table class="table table-bordered table-striped">
-    <tr>
-        <th>Banner ID</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Request ID</th>
-        <th>Submission Date</th>
-        <th>Approval Date</th>
-        <th>Key Delivered</th>
-    </tr>
-    @for (int i = 1; i <= 25; i++)
-    {
 
-        Random rnd = new Random();
-        int rndNum = i * rnd.Next(100, 10000);
-        int rndName = rnd.Next(0, name.Length);
-        int rndLName = rnd.Next(0, lname.Length);
-
-        <tr>
-            <td>@i</td>
-            <td>@name[rndName]</td>
-            <td>@lname[rndLName]</td>
-            <td>@rndNum</td>
-            <td>@DateTime.Now</td>
-            <td>Not Approved</td>
-            <td>Not Deleivered</td>
-        </tr>
-    }
-</table>

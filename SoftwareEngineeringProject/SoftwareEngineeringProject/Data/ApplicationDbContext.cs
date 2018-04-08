@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -22,6 +23,8 @@ namespace SoftwareEngineeringProject.Data
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
+
+            
         }
         // makes the room table
         public DbSet<Room> Rooms { get; set; }
@@ -41,21 +44,26 @@ namespace SoftwareEngineeringProject.Data
         public string Code { get; set; }
         [MaxLength(10)]
         public string Type { get; set; }
+        //[ForeignKey("Room")]
+        //public KeyRequestLines GetKeyRequestLines { get; set; }
     }
     public class KeyRequest
     {
         public int Id { get; set; }
         
         public DateTime Creation_Date { get; set; }
-        
+        //[ForeignKey("Requestor")]
+        //public ApplicationUser ApplicationUser { get; set; }
         public int Requestor { get; set; }
 
-
+        [ForeignKey("KeyRequestId")]
+        public ICollection<KeyRequestLines> KeyRequestLines { get; set; }
     }
     public class KeyRequestLines
     {
         public int Id { get; set; }
-
+        [ForeignKey("KeyRequestId")]
+        public KeyRequest KeyRequest { get; set; }
         public int KeyRequestId { get; set; }
 
         public DateTime CompletedDate { get; set; }
@@ -63,7 +71,8 @@ namespace SoftwareEngineeringProject.Data
         public DateTime ApprovalDate { get; set; }
 
         public string status { get; set; }
-        
+        //[ForeignKey("Room")]
+        //public Room Rooms { get; set; }
         public string Room { get; set; }
 
     }
