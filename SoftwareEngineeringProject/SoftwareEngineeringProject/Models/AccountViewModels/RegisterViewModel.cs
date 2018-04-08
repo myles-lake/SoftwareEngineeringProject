@@ -48,5 +48,9 @@ namespace SoftwareEngineeringProject.Models.AccountViewModels
         [Required]
         [Display(Name = "Associate Dean ID")]
         public string AssociateDeanID { get; set; }
+
+        [Required]
+        [Display(Name = "Role")]
+        public string Role { get; set; }
     }
 }
