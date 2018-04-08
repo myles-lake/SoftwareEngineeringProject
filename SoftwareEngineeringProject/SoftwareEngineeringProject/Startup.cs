@@ -67,13 +67,15 @@ namespace SoftwareEngineeringProject
             // runs the migration scripts which create the database automatically on setup or when changes are made
             var context = serviceProvider.GetService<ApplicationDbContext>();
 
-            //DbInitializer.Initialize(context, serviceProvider).Wait();
+            
             context.Database.Migrate();
 
             // seeds the data
             var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
             var roleManager = serviceProvider.GetService<RoleManager<IdentityRole>>();
-            //SeedData(userManager, roleManager).Wait();
+            SeedData(userManager, roleManager).Wait();
+
+            DbInitializer.Initialize(context, serviceProvider).Wait();
         }
 
         // Creates data that can be used by the sites on creation, default users, rooms, etc...

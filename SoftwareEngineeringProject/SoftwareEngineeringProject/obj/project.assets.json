@@ -13125,24 +13125,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Carter Van Veen\\.nuget\\packages\\": {},
+    "C:\\Users\\TylerVandermeer\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Carter Van Veen\\source\\repos\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject.csproj",
+      "projectUniqueName": "C:\\Users\\TylerVandermeer\\Documents\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject.csproj",
       "projectName": "SoftwareEngineeringProject",
-      "projectPath": "C:\\Users\\Carter Van Veen\\source\\repos\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject.csproj",
-      "packagesPath": "C:\\Users\\Carter Van Veen\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Carter Van Veen\\source\\repos\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\obj\\",
+      "projectPath": "C:\\Users\\TylerVandermeer\\Documents\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject.csproj",
+      "packagesPath": "C:\\Users\\TylerVandermeer\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\TylerVandermeer\\Documents\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Carter Van Veen\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\TylerVandermeer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"

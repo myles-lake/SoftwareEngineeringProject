@@ -54,8 +54,8 @@ namespace SoftwareEngineeringProject.Data
         [MaxLength(10)]
         public string Type { get; set; }
 
-        [ForeignKey("RoomID")]
-        public KeyRequest KeyRequest { get; set; }
+        
+        public KeyRequestLines KeyRequestLines { get; set; }
     }
 
 
@@ -91,7 +91,7 @@ namespace SoftwareEngineeringProject.Data
 
         public string status { get; set; }
         
-        [ForeignKey("RoomID")]
+        
         public Room Room { get; set; }
         public string RoomID { get; set; }
 
