@@ -1,16 +1,91 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Identity;
+using SoftwareEngineeringProject.Models;
+using System;
 using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 
 namespace SoftwareEngineeringProject.Data
 {
     public static class DbInitializer
     {
-        public static void Initialize(ApplicationDbContext context)
+        public static async Task Initialize(ApplicationDbContext context, IServiceProvider serviceProvider)
         {
             context.Database.EnsureCreated();
 
+            // create users
+            var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
+            var roleManager = serviceProvider.GetService<RoleManager<IdentityRole>>();
+
+            if (await userManager.FindByNameAsync("admin@mohawkcollege.ca") == null)
+            {
+                var user = new ApplicationUser
+                {
+                    Email = "admin@mohawkcollege.ca",
+                    PhoneNumber = "905-555-5555",
+                    UserName = "admin@mohawkcollege.ca",
+                    AssociateDeanID = 0,
+                    BannerID = 000123123,
+                    Campus = "Fennell",
+                    Department = "Software Engineering",
+                    Room = "Q101"
+                };
+                await userManager.CreateAsync(user, "Admin1!");
+                await userManager.AddToRoleAsync(user, "admin");
+            }
+
+            if (await userManager.FindByNameAsync("instructor@mohawkcollege.ca") == null)
+            {
+                var user = new ApplicationUser
+                {
+                    Email = "instructor@mohawkcollege.ca",
+                    PhoneNumber = "905-555-5555",
+                    UserName = "instructor@mohawkcollege.ca",
+                    AssociateDeanID = 000123123,
+                    BannerID = 000111111,
+                    Campus = "Fennell",
+                    Department = "Software Engineering",
+                    Room = "Q200"
+                };
+                await userManager.CreateAsync(user, "Instructor1!");
+                await userManager.AddToRoleAsync(user, "instructor");
+            }
+
+            if (await userManager.FindByNameAsync("security@mohawkcollege.ca") == null)
+            {
+                var user = new ApplicationUser
+                {
+                    Email = "security@mohawkcollege.ca",
+                    PhoneNumber = "905-555-5555",
+                    UserName = "security@mohawkcollege.ca",
+                    AssociateDeanID = 0,
+                    BannerID = 000222222,
+                    Campus = "Fennell",
+                    Department = "Security",
+                    Room = "C120"
+                };
+                await userManager.CreateAsync(user, "Security1!");
+                await userManager.AddToRoleAsync(user, "security");
+            }
+
+            if (await userManager.FindByNameAsync("locksmith@mohawkcollege.ca") == null)
+            {
+                var user = new ApplicationUser
+                {
+                    Email = "locksmith@mohawkcollege.ca",
+                    PhoneNumber = "905-555-5555",
+                    UserName = "locksmith@mohawkcollege.ca",
+                    AssociateDeanID = 0,
+                    BannerID = 000333333,
+                    Campus = "Fennell",
+                    Department = "Locksmithing",
+                    Room = "B100"
+                };
+                await userManager.CreateAsync(user, "Locksmith1!");
+                await userManager.AddToRoleAsync(user, "locksmith");
+            }
+
+            // rooms
             if (context.Rooms.Any())
             {
                 return;
@@ -20,30 +95,35 @@ namespace SoftwareEngineeringProject.Data
             {
                 new Room{ Code="4123", Type="Code", RoomID = "E203"},
                 new Room{ Code="4123", Type="Code", RoomID = "E204"},
-                new Room{ Code="", Type="Key", RoomID = "E205"},
-                new Room{ Code="", Type="Card", RoomID = "E206"},
-                new Room{ Code="", Type="Key", RoomID = "E207"},
-                new Room{ Code="", Type="Key", RoomID = "E208"},
-                new Room{ Code="", Type="Card", RoomID = "E209"}
+                new Room{ Code=null, Type="Key", RoomID = "E205"},
+                new Room{ Code=null, Type="Card", RoomID = "E206"},
+                new Room{ Code=null, Type="Key", RoomID = "E207"},
+                new Room{ Code=null, Type="Key", RoomID = "E208"},
+                new Room{ Code=null, Type="Card", RoomID = "E209"}
             };
-
 
             foreach (Room r in rooms)
             {
                 context.Rooms.Add(r);
             }
+
             context.SaveChanges();
+
             //Key Request
+
+
             var KeyRequest = new KeyRequest[]
             {
                 new KeyRequest{ Creation_Date=System.DateTime.Now, Requestor = 370838},
                 new KeyRequest{ Creation_Date=System.DateTime.Now, Requestor=846515}
 
             };
+
             foreach (KeyRequest r in KeyRequest)
             {
                 context.KeyRequest.Add(r);
             }
+
             context.SaveChanges();
 
             //Key Request Lines
@@ -53,10 +133,12 @@ namespace SoftwareEngineeringProject.Data
                 new KeyRequestLines{ KeyRequestId = 1,ApprovalDate = DateTime.Now,status = "Waiting for approval",Room = "E201",CompletedDate = DateTime.UtcNow}
 
             };
+
             foreach (KeyRequestLines r in KeyRequestLines)
             {
                 context.KeyRequestLines.Add(r);
             }
+
             context.SaveChanges();
         }
     }

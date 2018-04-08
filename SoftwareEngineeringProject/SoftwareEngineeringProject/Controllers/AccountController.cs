@@ -220,20 +220,28 @@ namespace SoftwareEngineeringProject.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, BannerID = int.Parse(model.BannerID), PhoneNumber = model.Phone, Department = model.Department, Campus = model.Campus, Room = model.Room};
+                var user = new ApplicationUser {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    BannerID = int.Parse(model.BannerID),
+                    PhoneNumber = model.Phone,
+                    Department = model.Department,
+                    Campus = model.Campus,
+                    Room = model.Room,
+                    AssociateDeanID = int.Parse(model.AssociateDeanID ?? "0")
+                };
                 var result = await _userManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, model.Role);
+
                     _logger.LogInformation("User created a new account with password.");
                     
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
                     await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
                     
-
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation("User created a new account with password.");
-                    return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);
             }
