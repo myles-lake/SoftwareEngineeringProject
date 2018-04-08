@@ -222,6 +222,8 @@ namespace SoftwareEngineeringProject.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, BannerID = int.Parse(model.BannerID), PhoneNumber = model.Phone, Department = model.Department, Campus = model.Campus, Room = model.Room, AssociateDeanID = int.Parse(model.AssociateDeanID)};
                 var result = await _userManager.CreateAsync(user, model.Password);
+                await _userManager.AddToRoleAsync(user, model.Role);
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
@@ -230,10 +232,6 @@ namespace SoftwareEngineeringProject.Controllers
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
                     await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
                     
-
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation("User created a new account with password.");
-                    return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);
             }
