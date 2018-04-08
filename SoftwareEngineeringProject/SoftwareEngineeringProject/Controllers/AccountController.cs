@@ -242,6 +242,7 @@ namespace SoftwareEngineeringProject.Controllers
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
                     await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
                     
+                    Response.Redirect(returnUrl + "/Account/Register");
                 }
                 AddErrors(result);
             }
