@@ -70,14 +70,12 @@ namespace SoftwareEngineeringProject
 
 
             context.Database.Migrate();
-            DbInitializer.Initialize(context);
+            DbInitializer.Initialize(context, serviceProvider);
 
             // seeds the data
             var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
             var roleManager = serviceProvider.GetService<RoleManager<IdentityRole>>();
             SeedData(userManager, roleManager).Wait();
-
-            
         }
 
         // Creates data that can be used by the sites on creation, default users, rooms, etc...
@@ -115,15 +113,6 @@ namespace SoftwareEngineeringProject
                     Name = "locksmith"
                 });
             }
-
-            // applies the role of admin to the user with account
-            // successfully applies the role to the created account, doesn't seem to add roles to the previous admin account created above
-            // var user = await userManager.FindByEmailAsync("myles52@live.ca");
-            // if (!await userManager.IsInRoleAsync(user, "admin"))
-            // {
-            //    await userManager.AddToRoleAsync(user, "admin");
-            // }
-
         }
     }
 }
