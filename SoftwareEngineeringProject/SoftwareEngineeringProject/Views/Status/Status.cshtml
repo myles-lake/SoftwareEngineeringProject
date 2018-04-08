@@ -1,4 +1,5 @@
-﻿<h2>Your Key Status'</h2>
+﻿@model IEnumerable<SoftwareEngineeringProject.Data.KeyRequestLines>
+<h2>Your Key Status'</h2>
 
 <table class="table table-bordered table-striped">
     <tr>
@@ -7,17 +8,33 @@
         <th>Submission Date</th>
         <th>Approval Date</th>
         <th>Key Delivered</th>
+        <th>Status</th>
     </tr>
-    @for (int i = 1; i <= 5; i++) {
-        Random rnd = new Random();
+    @foreach (var item in Model)
+    {
+        /*Random rnd = new Random();
         int rndNum = i * rnd.Next(100, 10000);
-        int roomNum = rnd.Next(100, 300);
-        <tr>
-            <td>@rndNum</td>
-            <td>E @roomNum</td>
-            <td>@DateTime.Now</td>
-            <td>Not Approved</td>
-            <td>Not Delivered</td>
-        </tr>
+        int roomNum = rnd.Next(100, 300);*/
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.KeyRequest.Requestor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Room)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KeyRequest.Creation_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApprovalDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompletedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+
+    </tr>
     }
 </table>

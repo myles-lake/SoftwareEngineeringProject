@@ -111,18 +111,13 @@ namespace SoftwareEngineeringProject
                     Name = "locksmith"
                 });
             }
-<<<<<<< HEAD
+
 
             // applies the role of admin to the user with account
             // successfully applies the role to the created account, doesn't seem to add roles to the previous admin account created above
-             var user = await userManager.FindByEmailAsync("ty@gmail.com");
-             if (!await userManager.IsInRoleAsync(user, "admin"))
-             {
-                await userManager.AddToRoleAsync(user, "admin");
-             }
+            
 
-=======
->>>>>>> 29587d9916a7b28d777a096c4fbb988cdbd7925c
+
         }
     }
 }
