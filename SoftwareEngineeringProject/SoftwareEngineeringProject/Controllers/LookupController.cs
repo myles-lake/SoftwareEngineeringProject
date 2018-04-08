@@ -46,13 +46,15 @@ namespace SoftwareEngineeringProject.Controllers
 
             //ViewData["test"] = dataset;
 
-            var data = _context.KeyRequestLines
-                //.Include(krl => krl.Rooms)
-                .Include(krl => krl.KeyRequest)
-                    //.ThenInclude(kr => kr.ApplicationUser)
-                .AsNoTracking();
+            
 
-            return View(await data.ToListAsync());
+            var data = _context.KeyRequestLines
+                .Include(krl => krl.Room)
+                .Include(krl => krl.KeyRequest)
+                    .ThenInclude(kr => kr.ApplicationUser)
+                .AsNoTracking().ToListAsync();
+
+            return View(await data);
             //await _context.Rooms.ToListAsync()
         }
     }

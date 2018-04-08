@@ -11,9 +11,10 @@ using System;
 namespace SoftwareEngineeringProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180408072047_migration7")]
+    partial class migration7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -167,8 +168,6 @@ namespace SoftwareEngineeringProject.Data.Migrations
 
                     b.HasIndex("KeyRequestId");
 
-                    b.HasIndex("RoomID");
-
                     b.ToTable("KeyRequestLines");
                 });
 
@@ -180,14 +179,10 @@ namespace SoftwareEngineeringProject.Data.Migrations
                     b.Property<string>("Code")
                         .HasMaxLength(4);
 
-                    b.Property<int?>("RoomID");
-
                     b.Property<string>("Type")
                         .HasMaxLength(10);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RoomID");
 
                     b.ToTable("Rooms");
                 });
@@ -311,17 +306,6 @@ namespace SoftwareEngineeringProject.Data.Migrations
                         .WithMany("KeyRequestLines")
                         .HasForeignKey("KeyRequestId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("SoftwareEngineeringProject.Data.Room", "Room")
-                        .WithMany()
-                        .HasForeignKey("RoomID");
-                });
-
-            modelBuilder.Entity("SoftwareEngineeringProject.Data.Room", b =>
-                {
-                    b.HasOne("SoftwareEngineeringProject.Data.KeyRequest", "KeyRequest")
-                        .WithMany()
-                        .HasForeignKey("RoomID");
                 });
 #pragma warning restore 612, 618
         }

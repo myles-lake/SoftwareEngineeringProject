@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,11 +13,14 @@ namespace SoftwareEngineeringProject.Models
     public class ApplicationUser : IdentityUser
     {
         public string Department { get; set; }
+        
         public int BannerID { get; set; }
+
         public string Campus { get; set; }
         public string Room { get; set; }
         public int AssociateDeanID { get; set; }
-        //[ForeignKey("Requestor")]
-        //public ICollection<KeyRequest> KeyRequest { get; set; }
+
+        [ForeignKey("UserId")]
+        public ICollection<KeyRequest> KeyRequest { get; set; }
     }
 }

@@ -24,6 +24,16 @@ namespace SoftwareEngineeringProject.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
 
+            //builder.Entity<Room>()
+            //    .HasAlternateKey(r => r.RoomID);
+
+            //builder.Entity<KeyRequestLines>()
+            //    .HasOne(krl => krl.Rooms)
+            //    .WithOne(r => r.KeyRequestLines)
+            //    .HasForeignKey<KeyRequestLines>(krl => krl.Room)
+            //    .HasPrincipalKey<Room>(r => r.RoomID);
+
+            
             
         }
         // makes the room table
@@ -38,30 +48,39 @@ namespace SoftwareEngineeringProject.Data
     // sets up the rooms table and all of its propertoes
     public class Room
     {
-        public int Id { get; set; }
-        public string RoomID { get; set; }
+        public string Id { get; set; }
         [MaxLength(4)]
         public string Code { get; set; }
         [MaxLength(10)]
         public string Type { get; set; }
-        //[ForeignKey("Room")]
-        //public KeyRequestLines GetKeyRequestLines { get; set; }
+
+        
+        public KeyRequestLines KeyRequestLines { get; set; }
     }
+
+
     public class KeyRequest
     {
         public int Id { get; set; }
         
         public DateTime Creation_Date { get; set; }
-        //[ForeignKey("Requestor")]
-        //public ApplicationUser ApplicationUser { get; set; }
+        
         public int Requestor { get; set; }
 
         [ForeignKey("KeyRequestId")]
         public ICollection<KeyRequestLines> KeyRequestLines { get; set; }
+
+        [ForeignKey("UserId")]
+        public ApplicationUser ApplicationUser { get; set; }
+        public string UserId { get; set; }
     }
+
+
+
     public class KeyRequestLines
     {
         public int Id { get; set; }
+
         [ForeignKey("KeyRequestId")]
         public KeyRequest KeyRequest { get; set; }
         public int KeyRequestId { get; set; }
@@ -71,9 +90,12 @@ namespace SoftwareEngineeringProject.Data
         public DateTime ApprovalDate { get; set; }
 
         public string status { get; set; }
-        //[ForeignKey("Room")]
-        //public Room Rooms { get; set; }
-        public string Room { get; set; }
+        
+        
+        public Room Room { get; set; }
+        public string RoomID { get; set; }
+
+        public string ReasonForAccess { get; set; }
 
     }
 

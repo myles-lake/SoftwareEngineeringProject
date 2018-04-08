@@ -24,8 +24,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.KeyRequest.Id)
             </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.KeyRequest.ApplicationUser.AssociateDeanID)
+            <th>
+                @Html.DisplayNameFor(model => model.KeyRequest.ApplicationUser.BannerID)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.KeyRequest.ApplicationUser.Campus)
@@ -35,16 +35,16 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.KeyRequest.ApplicationUser.Room)
-            </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.Room)
             </th>
-            @*<th>
-            @Html.DisplayNameFor(model => model.Rooms.Code)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rooms.Type)
-        </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.RoomID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room.Type)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.status)
             </th>
@@ -73,6 +73,9 @@
                 @Html.DisplayFor(modelItem => item.KeyRequestId)
             </td>
             <td>
+                @Html.DisplayFor(model => item.KeyRequest.ApplicationUser.BannerID)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Room)
             </td>
             <td>
@@ -86,6 +89,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ApprovalDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Room.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Room.Code)
             </td>
         </tr>
         }
