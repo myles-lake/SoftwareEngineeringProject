@@ -67,13 +67,13 @@ namespace SoftwareEngineeringProject
             // runs the migration scripts which create the database automatically on setup or when changes are made
             var context = serviceProvider.GetService<ApplicationDbContext>();
 
-            DbInitializer.Initialize(context, serviceProvider).Wait();
+            //DbInitializer.Initialize(context, serviceProvider).Wait();
             context.Database.Migrate();
 
             // seeds the data
             var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
             var roleManager = serviceProvider.GetService<RoleManager<IdentityRole>>();
-            SeedData(userManager, roleManager).Wait();
+            //SeedData(userManager, roleManager).Wait();
         }
 
         // Creates data that can be used by the sites on creation, default users, rooms, etc...
@@ -111,18 +111,18 @@ namespace SoftwareEngineeringProject
                     Name = "locksmith"
                 });
             }
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
-            // applies the role of admin to the user with account
-            // successfully applies the role to the created account, doesn't seem to add roles to the previous admin account created above
-             var user = await userManager.FindByEmailAsync("ty@gmail.com");
-             if (!await userManager.IsInRoleAsync(user, "admin"))
-             {
-                await userManager.AddToRoleAsync(user, "admin");
-             }
+//            // applies the role of admin to the user with account
+//            // successfully applies the role to the created account, doesn't seem to add roles to the previous admin account created above
+//             var user = await userManager.FindByEmailAsync("ty@gmail.com");
+//             if (!await userManager.IsInRoleAsync(user, "admin"))
+//             {
+//                await userManager.AddToRoleAsync(user, "admin");
+//             }
 
-=======
->>>>>>> 29587d9916a7b28d777a096c4fbb988cdbd7925c
+//=======
+//>>>>>>> 29587d9916a7b28d777a096c4fbb988cdbd7925c
         }
     }
 }

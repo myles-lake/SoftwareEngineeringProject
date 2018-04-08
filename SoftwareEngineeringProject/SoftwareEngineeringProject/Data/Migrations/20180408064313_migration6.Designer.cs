@@ -11,9 +11,10 @@ using System;
 namespace SoftwareEngineeringProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180408064313_migration6")]
+    partial class migration6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -159,7 +160,9 @@ namespace SoftwareEngineeringProject.Data.Migrations
 
                     b.Property<string>("ReasonForAccess");
 
-                    b.Property<string>("RoomID");
+                    b.Property<string>("Room");
+
+                    b.Property<int?>("RoomsId");
 
                     b.Property<string>("status");
 
@@ -167,27 +170,27 @@ namespace SoftwareEngineeringProject.Data.Migrations
 
                     b.HasIndex("KeyRequestId");
 
-                    b.HasIndex("RoomID");
+                    b.HasIndex("RoomsId")
+                        .IsUnique()
+                        .HasFilter("[RoomsId] IS NOT NULL");
 
                     b.ToTable("KeyRequestLines");
                 });
 
             modelBuilder.Entity("SoftwareEngineeringProject.Data.Room", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Code")
                         .HasMaxLength(4);
 
-                    b.Property<int?>("RoomID");
+                    b.Property<string>("RoomID");
 
                     b.Property<string>("Type")
                         .HasMaxLength(10);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RoomID");
 
                     b.ToTable("Rooms");
                 });
@@ -312,16 +315,9 @@ namespace SoftwareEngineeringProject.Data.Migrations
                         .HasForeignKey("KeyRequestId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("SoftwareEngineeringProject.Data.Room", "Room")
-                        .WithMany()
-                        .HasForeignKey("RoomID");
-                });
-
-            modelBuilder.Entity("SoftwareEngineeringProject.Data.Room", b =>
-                {
-                    b.HasOne("SoftwareEngineeringProject.Data.KeyRequest", "KeyRequest")
-                        .WithMany()
-                        .HasForeignKey("RoomID");
+                    b.HasOne("SoftwareEngineeringProject.Data.Room", "Rooms")
+                        .WithOne("KeyRequestLines")
+                        .HasForeignKey("SoftwareEngineeringProject.Data.KeyRequestLines", "RoomsId");
                 });
 #pragma warning restore 612, 618
         }

@@ -93,13 +93,13 @@ namespace SoftwareEngineeringProject.Data
 
             var rooms = new Room[]
             {
-                new Room{ Code="4123", Type="Code", RoomID = "E203"},
-                new Room{ Code="4123", Type="Code", RoomID = "E204"},
-                new Room{ Code=null, Type="Key", RoomID = "E205"},
-                new Room{ Code=null, Type="Card", RoomID = "E206"},
-                new Room{ Code=null, Type="Key", RoomID = "E207"},
-                new Room{ Code=null, Type="Key", RoomID = "E208"},
-                new Room{ Code=null, Type="Card", RoomID = "E209"}
+                new Room{ Code="4123", Type="Code", Id = "E203"},
+                new Room{ Code="4123", Type="Code", Id = "E204"},
+                new Room{ Code=null, Type="Key", Id = "E205"},
+                new Room{ Code=null, Type="Card", Id = "E206"},
+                new Room{ Code=null, Type="Key", Id = "E207"},
+                new Room{ Code=null, Type="Key", Id = "E208"},
+                new Room{ Code=null, Type="Card", Id = "E209"}
             };
 
             foreach (Room r in rooms)
@@ -114,8 +114,8 @@ namespace SoftwareEngineeringProject.Data
 
             var KeyRequest = new KeyRequest[]
             {
-                new KeyRequest{ Creation_Date=System.DateTime.Now, Requestor = 370838},
-                new KeyRequest{ Creation_Date=System.DateTime.Now, Requestor=846515}
+                new KeyRequest{ Creation_Date=System.DateTime.Now, Requestor=000123123, UserId=userManager.FindByNameAsync("admin@mohawkcollege.ca").Id.ToString()},
+                new KeyRequest{ Creation_Date=System.DateTime.Now, Requestor=000123123, UserId=userManager.FindByNameAsync("admin@mohawkcollege.ca").Id.ToString()}
 
             };
 
@@ -129,8 +129,8 @@ namespace SoftwareEngineeringProject.Data
             //Key Request Lines
             var KeyRequestLines = new KeyRequestLines[]
             {
-                new KeyRequestLines{ KeyRequestId = 1,ApprovalDate = DateTime.Now,status = "Approved, Waiting to be cut!",Room = "E201",CompletedDate = DateTime.UtcNow},
-                new KeyRequestLines{ KeyRequestId = 1,ApprovalDate = DateTime.Now,status = "Waiting for approval",Room = "E201",CompletedDate = DateTime.UtcNow}
+                new KeyRequestLines{ KeyRequestId = 1,ApprovalDate = DateTime.Now,status = "Approved, Waiting to be cut!",RoomID = "E201",CompletedDate = DateTime.UtcNow},
+                new KeyRequestLines{ KeyRequestId = 1,ApprovalDate = DateTime.Now,status = "Waiting for approval",RoomID = "E201",CompletedDate = DateTime.UtcNow}
 
             };
 
