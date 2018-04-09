@@ -86,60 +86,68 @@ namespace SoftwareEngineeringProject.Data
             }
 
             // rooms
-            if (context.Rooms.Any())
+            if (!context.Rooms.Any())
             {
-                return;
+                var rooms = new Room[]
+                {
+                    new Room{ Code="4123", Type="Code", Id = "E203"},
+                    new Room{ Code="4123", Type="Code", Id = "E204"},
+                    new Room{ Code=null, Type="Key", Id = "E205"},
+                    new Room{ Code=null, Type="Card", Id = "E206"},
+                    new Room{ Code=null, Type="Key", Id = "E207"},
+                    new Room{ Code=null, Type="Key", Id = "E208"},
+                    new Room{ Code=null, Type="Card", Id = "E209"}
+                };
+
+                foreach (Room r in rooms)
+                {
+                    context.Rooms.Add(r);
+                }
+
+                context.SaveChanges();
             }
 
-            var rooms = new Room[]
-            {
-                new Room{ Code="4123", Type="Code", Id = "E203"},
-                new Room{ Code="4123", Type="Code", Id = "E204"},
-                new Room{ Code=null, Type="Key", Id = "E205"},
-                new Room{ Code=null, Type="Card", Id = "E206"},
-                new Room{ Code=null, Type="Key", Id = "E207"},
-                new Room{ Code=null, Type="Key", Id = "E208"},
-                new Room{ Code=null, Type="Card", Id = "E209"}
-            };
-
-            foreach (Room r in rooms)
-            {
-                context.Rooms.Add(r);
-            }
-
-            context.SaveChanges();
+            
 
             //Key Request
-
-
-            var KeyRequest = new KeyRequest[]
+            if (!context.KeyRequest.Any())
             {
-                new KeyRequest{ Creation_Date=System.DateTime.Now, Requestor=000123123, UserId=userManager.FindByNameAsync("admin@mohawkcollege.ca").Id.ToString()},
-                new KeyRequest{ Creation_Date=System.DateTime.Now, Requestor=000123123, UserId=userManager.FindByNameAsync("admin@mohawkcollege.ca").Id.ToString()}
+                var temp = context.Users.FirstOrDefault();
+                var KeyRequest = new KeyRequest[]
+                {
+                    new KeyRequest{ Creation_Date=System.DateTime.Now, Requestor=000123123, UserId=temp.Id},
+                    new KeyRequest{ Creation_Date=System.DateTime.Now, Requestor=000123123, UserId=temp.Id}
 
-            };
+                };
 
-            foreach (KeyRequest r in KeyRequest)
-            {
-                context.KeyRequest.Add(r);
+                foreach (KeyRequest r in KeyRequest)
+                {
+                    context.KeyRequest.Add(r);
+                }
+
+                context.SaveChanges();
             }
 
-            context.SaveChanges();
 
             //Key Request Lines
-            var KeyRequestLines = new KeyRequestLines[]
+            if (!context.KeyRequestLines.Any())
             {
-                new KeyRequestLines{ KeyRequestId = 1,ApprovalDate = DateTime.Now,status = "Approved, Waiting to be cut!",RoomID = "E201",CompletedDate = DateTime.UtcNow},
-                new KeyRequestLines{ KeyRequestId = 1,ApprovalDate = DateTime.Now,status = "Waiting for approval",RoomID = "E201",CompletedDate = DateTime.UtcNow}
+                var temp = context.KeyRequest.Select(i => i.Id).ToList();
 
-            };
+                var KeyRequestLines = new KeyRequestLines[2];
+                //{
+                //    new KeyRequestLines{ KeyRequestId = 2007, ApprovalDate = DateTime.Now,status = "Approved, Waiting to be cut!",RoomID = "E201",CompletedDate = DateTime.UtcNow},
+                //    new KeyRequestLines{ KeyRequestId = 2008,ApprovalDate = DateTime.Now,status = "Waiting for approval",RoomID = "E201",CompletedDate = DateTime.UtcNow}
 
-            foreach (KeyRequestLines r in KeyRequestLines)
-            {
-                context.KeyRequestLines.Add(r);
+                //};
+
+                foreach (var item in temp)
+                {
+                    context.KeyRequestLines.Add(new Data.KeyRequestLines { KeyRequestId = item, ApprovalDate = DateTime.Now, status = "Approved, Waiting to be cut!", RoomID = "E201", CompletedDate = DateTime.UtcNow });
+                }
+
+                context.SaveChanges();
             }
-
-            context.SaveChanges();
         }
     }
 }

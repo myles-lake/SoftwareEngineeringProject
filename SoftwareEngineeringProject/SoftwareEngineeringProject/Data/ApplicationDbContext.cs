@@ -91,7 +91,6 @@ namespace SoftwareEngineeringProject.Data
 
         public string status { get; set; }
         
-        
         public Room Room { get; set; }
         public string RoomID { get; set; }
 
