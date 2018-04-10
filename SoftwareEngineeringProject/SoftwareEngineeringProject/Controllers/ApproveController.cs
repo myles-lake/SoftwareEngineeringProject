@@ -110,10 +110,29 @@ namespace SoftwareEngineeringProject.Controllers
         public async Task<IActionResult> DissapproveKey(int id)
         {
             var entity = _context.KeyRequestLines.FirstOrDefault(krl => krl.Id == id);
+            var user = await userManager.GetUserAsync(HttpContext.User);
+            var isLocksmith = await userManager.IsInRoleAsync(user, "locksmith");
+            var isSecurity = await userManager.IsInRoleAsync(user, "security");
+            var isAdmin = await userManager.IsInRoleAsync(user, "admin");
             if (entity != null)
             {
                 entity.ApprovalDate = DateTime.Now;
-                entity.status = "Dissapproved";
+                entity.CompletedDate = DateTime.Now;
+                if (isAdmin)
+                {
+                    entity.status = "Dissapproved by Admin";
+                    _context.KeyRequestLines.Update(entity);
+                }
+                if (isLocksmith)
+                {
+                    entity.status = "Dissapproved by Locksmith";
+                    _context.KeyRequestLines.Update(entity);
+                }
+                if (isSecurity)
+                {
+                    entity.status = "Dissapproved by Security";
+                    _context.KeyRequestLines.Update(entity);
+                }
                 _context.KeyRequestLines.Update(entity);
                 await _context.SaveChangesAsync();
             }
