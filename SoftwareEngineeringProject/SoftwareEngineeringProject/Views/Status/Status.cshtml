@@ -12,29 +12,26 @@
     </tr>
     @foreach (var item in Model)
     {
-        /*Random rnd = new Random();
-        int rndNum = i * rnd.Next(100, 10000);
-        int roomNum = rnd.Next(100, 300);*/
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.KeyRequest.Requestor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RoomID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.KeyRequest.Creation_Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApprovalDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompletedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.status)
-        </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.KeyRequest.Requestor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KeyRequest.Creation_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovalDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompletedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
 
-    </tr>
+        </tr>
     }
 </table>
