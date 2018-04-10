@@ -56,12 +56,11 @@ namespace SoftwareEngineeringProject.Controllers
             applicationDbContext.KeyRequest.Add(keyRequest);
             applicationDbContext.SaveChanges();
 
-            for (int i = 0; i < campus.Length; i++)
+            try
             {
-                roomNumber[i] = roomNumber[i].Trim();
-
-                try
+                for (int i = 0; i < campus.Length; i++)
                 {
+                    roomNumber[i] = roomNumber[i].Trim();
                     var keyRequestLine = new KeyRequestLines
                     {
                         KeyRequestId = applicationDbContext.KeyRequest
@@ -78,16 +77,14 @@ namespace SoftwareEngineeringProject.Controllers
                     };
                     applicationDbContext.KeyRequestLines.Add(keyRequestLine);
                     await applicationDbContext.SaveChangesAsync();
-
-                    return RedirectToAction("Status", "Status");
-                }
-                catch (Exception e)
-                {
-                    ViewBag.RequestKey = "One of your values entered were incorrect, please try again.";
                 }
 
+                return RedirectToAction("Status", "Status");
             }
-
+            catch (Exception e)
+            {
+                ViewBag.RequestKey = "One of your values entered were incorrect, please try again.";
+            }
             return View("RequestKey");
         }
     }
