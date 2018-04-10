@@ -47,7 +47,7 @@ namespace SoftwareEngineeringProject.Controllers
                    .Include(krl => krl.Room)
                    .Include(krl => krl.KeyRequest)
                        .ThenInclude(kr => kr.ApplicationUser)
-                                .Where(l => l.ApprovalDate != null
+                                .Where(l => l.CompletedDate == null
                                          && l.Room.Type == "Key");
             }
             if (isSecurity)
@@ -56,7 +56,7 @@ namespace SoftwareEngineeringProject.Controllers
                    .Include(krl => krl.Room)
                    .Include(krl => krl.KeyRequest)
                        .ThenInclude(kr => kr.ApplicationUser)
-                                .Where(l => l.ApprovalDate != null
+                                .Where(l => l.CompletedDate == null
                                          && (l.Room.Type == "Code"
                                          || l.Room.Type == "Card"));
             }
@@ -66,11 +66,11 @@ namespace SoftwareEngineeringProject.Controllers
             return View(await data.AsNoTracking().ToListAsync());
         }
 
-        public async Task<IActionResult> ApproveKey(int id)
+        public async Task<IActionResult> ApproveKey(int id, string type)
         {
             var entity = _context.KeyRequestLines
-                            .Include(krl => krl.Room)
                             .FirstOrDefault(krl => krl.Id == id);
+
             var user = await userManager.GetUserAsync(HttpContext.User);
             if (entity != null)
             {
@@ -80,7 +80,7 @@ namespace SoftwareEngineeringProject.Controllers
                 if (isAdmin)
                 {
                     entity.ApprovalDate = DateTime.Now;
-                    if (entity.Room.Type == "Key")
+                    if (type == "Key")
                     {
                         entity.status = "Awaiting to be cut";
                     }
@@ -88,7 +88,6 @@ namespace SoftwareEngineeringProject.Controllers
                     {
                         entity.status = "Permissions being approved";
                     }
-                    
                 }
                 if (isLocksmith)
                 {

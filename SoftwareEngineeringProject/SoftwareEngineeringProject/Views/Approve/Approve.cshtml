@@ -32,7 +32,7 @@
                     @Html.DisplayFor(modelItem => item.ReasonForAccess)
                 </td>
                 <td>
-                    <a asp-action="ApproveKey" asp-route-id="@item.Id">Approve</a>
+                    <a asp-action="ApproveKey" asp-route-id="@item.Id" asp-route-type="@item.Room.Type">Approve</a>
                 </td>
                 <td>
                     <a asp-action="DissapproveKey" asp-route-id="@item.Id">Disapprove</a>

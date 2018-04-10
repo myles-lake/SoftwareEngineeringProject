@@ -4,6 +4,7 @@
 <table class="table table-bordered table-striped">
     <tr>
         <th>Banner ID</th>
+        <th>Reason</th>
         <th>Room Number</th>
         <th>Submission Date</th>
         <th>Request Approved/Declined Date</th>
@@ -15,6 +16,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.KeyRequest.Requestor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReasonForAccess)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RoomID)
