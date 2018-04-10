@@ -32,17 +32,10 @@ namespace SoftwareEngineeringProject.Controllers
             var user = await userManager.GetUserAsync(HttpContext.User);
             //user.BannerID;
             var data = _context.KeyRequestLines
-                //.Include(krl => krl.Rooms)
                 .Where(o=>o.KeyRequest.Requestor == user.BannerID )
                 .Include(krl => krl.KeyRequest)
-                
-                //.ThenInclude(kr => kr.ApplicationUser)
                 .AsNoTracking();
-
             return View(await data.ToListAsync());
-            //await _context.Rooms.ToListAsync()
-
-            //return View();
         }
     }
 }

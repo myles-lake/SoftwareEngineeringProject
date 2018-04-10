@@ -1,7 +1,10 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+﻿@model IEnumerable<SoftwareEngineeringProject.Data.KeyRequestLines>
+
+@*
+    ------ For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    
 }
 
 <h2>Approve Keys</h2>
@@ -9,26 +12,42 @@
 <table class="table table-bordered table-striped">
     <tr>
         <th>Banner ID</th>
-        <th>First Name</th>
-        <th>Last Name</th>
+        <th>Email</th>>
         <th>Room Number</th>
-        <th>Key Or FOB</th>
+        <th>Access type</th>
         <th>Request ID</th>
         <th>Approve</th>
+        <th>Disapprove</th>
     </tr>
-    @for (int i = 1; i <= 10; i++) {
-        Random rnd = new Random();
-        int rndNum = i * rnd.Next(100, 10000);
-        int roomNum = rnd.Next(100, 300);
-        int isKey = rnd.Next(1,3);
-        <tr>
-            <td>@i</td>
-            <td>billy</td>
-            <td>bob</td>
-            <td>E @roomNum</td>
-            <td>@(isKey==1?"Key":"FOB")</td>
-            <td>@rndNum</td>
-            <td><a href="#">Approve</a></td>
-        </tr>
-     }
+    @foreach (var item in Model)
+    {
+        /*if (item.KeyRequest.ApplicationUser.BannerID == ) { 
+
+
+        }*/
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.KeyRequest.Requestor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KeyRequest.ApplicationUser.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Room.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KeyRequestId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+
+    </tr>
+    }
 </table>
