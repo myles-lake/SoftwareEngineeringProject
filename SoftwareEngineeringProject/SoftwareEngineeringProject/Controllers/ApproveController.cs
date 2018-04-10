@@ -42,5 +42,32 @@ namespace SoftwareEngineeringProject.Controllers
 
             return View(await data.ToListAsync());
         }
+
+        public async Task<IActionResult> ApproveKey(int id)
+        {
+            var entity = _context.KeyRequestLines.FirstOrDefault(krl => krl.Id == id);
+            if (entity != null)
+            {
+                entity.ApprovalDate = DateTime.Now;
+                entity.status = "Approved";
+                _context.KeyRequestLines.Update(entity);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Approve", "Approve");
+        }
+
+        public async Task<IActionResult> DissapproveKey(int id)
+        {
+            var entity = _context.KeyRequestLines.FirstOrDefault(krl => krl.Id == id);
+            if (entity != null)
+            {
+                entity.status = "Dissapproved";
+                _context.KeyRequestLines.Update(entity);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Approve", "Approve");
+        }
     }
 }

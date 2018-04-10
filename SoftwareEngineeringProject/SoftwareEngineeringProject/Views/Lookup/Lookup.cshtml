@@ -16,6 +16,9 @@
     <thead>
         <tr>
             <th>
+                Request ID
+            </th>
+            <th>
                 BannerID
             </th>
             <th>
@@ -51,6 +54,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KeyRequest.Id)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.KeyRequest.ApplicationUser.BannerID)
                 </td>
