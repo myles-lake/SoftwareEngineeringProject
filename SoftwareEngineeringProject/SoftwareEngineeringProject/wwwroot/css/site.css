@@ -26,11 +26,15 @@
     margin: 15px;
 }
 
-#a:hover {
+#navText:hover {
     background-color: #990033;
 }
 
-#a {
+#navText {
+    color: white;
+}
+
+#navHome {
     color: white;
 }
 
