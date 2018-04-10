@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage.Internal;
 using SoftwareEngineeringProject.Data;
 using System;
 
-namespace SoftwareEngineeringProject.Data.Migrations
+namespace SoftwareEngineeringProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180408051248_migration5")]
-    partial class migration5
+    [Migration("20180409235618_migration1")]
+    partial class migration1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -134,15 +134,15 @@ namespace SoftwareEngineeringProject.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplicationUserId");
-
                     b.Property<DateTime>("Creation_Date");
 
                     b.Property<int>("Requestor");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("KeyRequest");
                 });
@@ -160,9 +160,7 @@ namespace SoftwareEngineeringProject.Data.Migrations
 
                     b.Property<string>("ReasonForAccess");
 
-                    b.Property<string>("Room");
-
-                    b.Property<int?>("RoomsId");
+                    b.Property<string>("RoomID");
 
                     b.Property<string>("status");
 
@@ -170,22 +168,20 @@ namespace SoftwareEngineeringProject.Data.Migrations
 
                     b.HasIndex("KeyRequestId");
 
-                    b.HasIndex("RoomsId")
+                    b.HasIndex("RoomID")
                         .IsUnique()
-                        .HasFilter("[RoomsId] IS NOT NULL");
+                        .HasFilter("[RoomID] IS NOT NULL");
 
                     b.ToTable("KeyRequestLines");
                 });
 
             modelBuilder.Entity("SoftwareEngineeringProject.Data.Room", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Code")
                         .HasMaxLength(4);
-
-                    b.Property<string>("RoomID");
 
                     b.Property<string>("Type")
                         .HasMaxLength(10);
@@ -305,7 +301,7 @@ namespace SoftwareEngineeringProject.Data.Migrations
                 {
                     b.HasOne("SoftwareEngineeringProject.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("KeyRequest")
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SoftwareEngineeringProject.Data.KeyRequestLines", b =>
@@ -315,9 +311,9 @@ namespace SoftwareEngineeringProject.Data.Migrations
                         .HasForeignKey("KeyRequestId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("SoftwareEngineeringProject.Data.Room", "Rooms")
+                    b.HasOne("SoftwareEngineeringProject.Data.Room", "Room")
                         .WithOne("KeyRequestLines")
-                        .HasForeignKey("SoftwareEngineeringProject.Data.KeyRequestLines", "RoomsId");
+                        .HasForeignKey("SoftwareEngineeringProject.Data.KeyRequestLines", "RoomID");
                 });
 #pragma warning restore 612, 618
         }
