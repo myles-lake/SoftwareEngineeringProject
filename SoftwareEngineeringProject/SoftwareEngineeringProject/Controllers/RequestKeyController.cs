@@ -7,9 +7,11 @@ using SoftwareEngineeringProject.Data;
 using Microsoft.Extensions.DependencyInjection;
 using SoftwareEngineeringProject.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SoftwareEngineeringProject.Controllers
 {
+    [Authorize]
     public class RequestKeyController : Controller
     {
         ApplicationDbContext applicationDbContext;
@@ -46,7 +48,8 @@ namespace SoftwareEngineeringProject.Controllers
             var keyRequest = new KeyRequest
             {
                 Creation_Date = DateTime.Now,
-                Requestor = user.BannerID
+                Requestor = user.BannerID,
+                UserId = user.Id
             };
 
             applicationDbContext.KeyRequest.Add(keyRequest);

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SoftwareEngineeringProject.Controllers
 {
-    [Authorize(Roles = "admin")]
+    [Authorize(Roles = "admin,security,locksmith")]
     public class ApproveController : Controller
     {
         public IActionResult Index()

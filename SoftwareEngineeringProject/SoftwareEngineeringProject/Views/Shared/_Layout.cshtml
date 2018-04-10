@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject SignInManager<ApplicationUser> SignInManager
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -32,14 +34,21 @@
                 <ul class="nav navbar-nav">
                     <li></li>
                     <li><a id="a" asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Key Manager</a></li>
-                    <li><a id="a" asp-area="" asp-controller="RequestKey" asp-action="RequestKey">Request Keys</a></li>
-                    <li><a id="a" asp-area="" asp-controller="Status" asp-action="Status">Key Status</a></li>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li><a id="a" asp-area="" asp-controller="RequestKey" asp-action="RequestKey">Request Keys</a></li>
+                        <li><a id="a" asp-area="" asp-controller="Status" asp-action="Status">Key Status</a></li>
+                    }
                     <!--makes it so that non admins can't see the route-->
                     @if (User.IsInRole("admin"))
                     {
                         <li><a id="a" asp-area="" asp-controller="Lookup" asp-action="Lookup">Data Lookup</a></li>
                         <li><a id="a" asp-area="" asp-controller="Approve" asp-action="Approve">Approve Keys</a></li>
                         <li><a id="a" asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
+                    }
+                    @if (User.IsInRole("security") || User.IsInRole("locksmith"))
+                    {
+                        <li><a id="a" asp-area="" asp-controller="Approve" asp-action="Approve">Approve Keys</a></li>
                     }
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
