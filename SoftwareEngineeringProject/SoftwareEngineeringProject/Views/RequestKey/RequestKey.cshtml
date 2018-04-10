@@ -2,8 +2,9 @@
     ViewData["Title"] = "Request";
 }
 <h2>Request Keys</h2>
+<h4 style="color:red">@ViewBag.RequestKey</h4>
 
-<form method="post" action="ProcessKeyRequests">
+<form method="post" action="ProcessKeyRequests" onsubmit="redirect()">
     <table id="keyRequest" class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -18,8 +19,8 @@
             <td><input type="text" name="reasonForAccess" /></td>
         </tr>
     </table>
+    <input type="submit" id="sumbit" name="requestKeys" value="Request Room Access" />
     <button runat="server" onclick="addKeyRequest(); return false;">Add Key Request</button>
-    <input type="submit" name="requestKeys" value="Request Room Access" />
 </form>
 
 <script type="text/javascript">

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SoftwareEngineeringProject.Controllers
 {
-    [Authorize(Roles = "admin")]
+    [Authorize(Roles = "admin,security,locksmith")]
     public class ApproveController : Controller
     {
         private readonly ApplicationDbContext _context;

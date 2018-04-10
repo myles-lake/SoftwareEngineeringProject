@@ -7,9 +7,11 @@ using SoftwareEngineeringProject.Data;
 using Microsoft.Extensions.DependencyInjection;
 using SoftwareEngineeringProject.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SoftwareEngineeringProject.Controllers
 {
+    [Authorize]
     public class RequestKeyController : Controller
     {
         ApplicationDbContext applicationDbContext;
@@ -46,7 +48,9 @@ namespace SoftwareEngineeringProject.Controllers
             var keyRequest = new KeyRequest
             {
                 Creation_Date = DateTime.Now,
-                Requestor = user.BannerID
+                Requestor = user.BannerID,
+                UserId = user.Id,
+                ApplicationUser = user
             };
 
             applicationDbContext.KeyRequest.Add(keyRequest);
@@ -54,22 +58,34 @@ namespace SoftwareEngineeringProject.Controllers
 
             for (int i = 0; i < campus.Length; i++)
             {
-                var keyRequestLine = new KeyRequestLines
+                roomNumber[i] = roomNumber[i].Trim();
+
+                try
                 {
-                    KeyRequestId = applicationDbContext.KeyRequest
-                        .Where(k => k.Requestor == user.BannerID)
-                        .Where(c => c.Creation_Date == keyRequest.Creation_Date)
-                        .FirstOrDefault()
-                        .Id,
-                    RoomID = roomNumber[i],
-                    status = "waiting for approval",
-                    ReasonForAccess = reasonForAccess[i],
-                    Campus = campus[i],
-                    ApprovalDate = null,
-                    CompletedDate = null
-                };
-                applicationDbContext.KeyRequestLines.Add(keyRequestLine);
-                await applicationDbContext.SaveChangesAsync();
+                    var keyRequestLine = new KeyRequestLines
+                    {
+                        KeyRequestId = applicationDbContext.KeyRequest
+                           .Where(k => k.Requestor == user.BannerID)
+                           .Where(c => c.Creation_Date == keyRequest.Creation_Date)
+                           .FirstOrDefault()
+                           .Id,
+                        RoomID = roomNumber[i],
+                        status = "waiting for approval",
+                        ReasonForAccess = reasonForAccess[i],
+                        Campus = campus[i],
+                        ApprovalDate = null,
+                        CompletedDate = null
+                    };
+                    applicationDbContext.KeyRequestLines.Add(keyRequestLine);
+                    await applicationDbContext.SaveChangesAsync();
+
+                    return RedirectToAction("Status", "Status");
+                }
+                catch (Exception e)
+                {
+                    ViewBag.RequestKey = "One of your values entered were incorrect, please try again.";
+                }
+
             }
 
             return View("RequestKey");

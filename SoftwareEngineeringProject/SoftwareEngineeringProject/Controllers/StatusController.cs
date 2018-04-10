@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using SoftwareEngineeringProject.Data;
 using SoftwareEngineeringProject.Models;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SoftwareEngineeringProject.Controllers
 {
+    [Authorize]
     public class StatusController : Controller
     {
         private readonly ApplicationDbContext _context;
