@@ -32,37 +32,13 @@ namespace SoftwareEngineeringProject.Controllers
             var userManager = service.GetService<UserManager<ApplicationUser>>();
             var user = await userManager.GetUserAsync(HttpContext.User);
             var data = _context.KeyRequestLines
-                .Where(l => l.KeyRequest.ApplicationUser.AssociateDeanID == user.BannerID)
                .Include(krl => krl.Room)
                .Include(krl => krl.KeyRequest)
-                   .ThenInclude(kr => kr.ApplicationUser);
-               //.Where(l=>l.KeyRequest.ApplicationUser.AssociateDeanID.ToString()==user.BannerID.ToString());
-            //Where(krl => krl.KeyRequest.ApplicationUser.BannerID.ToString().Contains(searchString));
-            /*var data = _context.KeyRequestLines
-                .Join(
-                _context.KeyRequest,
-                krl => krl.KeyRequestId,
-                kr => kr.Id,
-                (krl, kr) => new { KeyRequestLines = krl, KeyRequest = kr }
-                )
-                .Join(_context.Users,
-                u => u.KeyRequest.Requestor,
-                us=> us.BannerID,
-                (u, us) => new { KeyRequest = u, Users = us }
-                )
-                .Where(l=>l.Users.AssociateDeanID ==user.BannerID)
-                .Select(
-                c=>new{
-                    c.KeyRequest.KeyRequest.Requestor,
-                    c.Users.Email,
-                    c.KeyRequest.KeyRequestLines.RoomID,
-                    c.KeyRequest.KeyRequestLines.Room.Type,
-                    c.KeyRequest.KeyRequestLines.Id
-                });*/
+                   .ThenInclude(kr => kr.ApplicationUser)
+                            .Where(l => l.KeyRequest.ApplicationUser.AssociateDeanID == user.BannerID
+                            && l.ApprovalDate == null);
 
-            /*.(u=>u.-
-            .Where(o => o. == user.AssociateDeanID)
-            .AsNoTracking();*/
+            
 
             return View(await data.ToListAsync());
         }

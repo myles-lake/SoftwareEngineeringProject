@@ -21,10 +21,6 @@
     </tr>
     @foreach (var item in Model)
     {
-        /*if (item.KeyRequest.ApplicationUser.BannerID == ) { 
-
-
-        }*/
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.KeyRequest.Requestor)
@@ -39,8 +35,9 @@
             @Html.DisplayFor(modelItem => item.Room.Type)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.KeyRequestId)
+            @Html.DisplayFor(modelItem => item.Id)
         </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.status)
         </td>
