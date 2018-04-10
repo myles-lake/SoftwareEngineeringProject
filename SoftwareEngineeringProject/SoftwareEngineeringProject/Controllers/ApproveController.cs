@@ -68,7 +68,9 @@ namespace SoftwareEngineeringProject.Controllers
 
         public async Task<IActionResult> ApproveKey(int id)
         {
-            var entity = _context.KeyRequestLines.FirstOrDefault(krl => krl.Id == id);
+            var entity = _context.KeyRequestLines
+                            .Include(krl => krl.Room)
+                            .FirstOrDefault(krl => krl.Id == id);
             var user = await userManager.GetUserAsync(HttpContext.User);
             if (entity != null)
             {
