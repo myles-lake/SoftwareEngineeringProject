@@ -13125,25 +13125,41 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\TylerVandermeer\\.nuget\\packages\\": {},
+=======
+    "C:\\Users\\Myles\\.nuget\\packages\\": {},
+>>>>>>> 7cd28350db5fa2bda9a8836e2bf65791640f4934
     "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\TylerVandermeer\\Documents\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject.csproj",
       "projectName": "SoftwareEngineeringProject",
       "projectPath": "C:\\Users\\TylerVandermeer\\Documents\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject.csproj",
       "packagesPath": "C:\\Users\\TylerVandermeer\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\TylerVandermeer\\Documents\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\Myles\\Source\\Repos\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject.csproj",
+      "projectName": "SoftwareEngineeringProject",
+      "projectPath": "C:\\Users\\Myles\\Source\\Repos\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject.csproj",
+      "packagesPath": "C:\\Users\\Myles\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Myles\\Source\\Repos\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\SoftwareEngineeringProject\\obj\\",
+>>>>>>> 7cd28350db5fa2bda9a8836e2bf65791640f4934
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\TylerVandermeer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+        "C:\\Users\\Myles\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> 7cd28350db5fa2bda9a8836e2bf65791640f4934
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
