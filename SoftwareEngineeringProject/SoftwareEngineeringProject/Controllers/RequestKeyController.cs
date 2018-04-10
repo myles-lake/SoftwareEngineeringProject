@@ -48,7 +48,8 @@ namespace SoftwareEngineeringProject.Controllers
             var keyRequest = new KeyRequest
             {
                 Creation_Date = DateTime.Now,
-                Requestor = user.BannerID
+                Requestor = user.BannerID,
+                UserId = user.Id
             };
 
             applicationDbContext.KeyRequest.Add(keyRequest);
