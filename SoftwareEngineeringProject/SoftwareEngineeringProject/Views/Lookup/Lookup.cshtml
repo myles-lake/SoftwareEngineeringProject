@@ -2,10 +2,11 @@
 
 <h2>Data Lookup</h2>
 <div class="row">
-    <form>
+    <form asp-action="Lookup" method="post">
         <div class="form-group col-md-4">
             <label for="search">Search:</label>
-            <input id="search" class="form-control" type="text" placeholder="Search" />
+            <input id="search" class="form-control" type="text" name="SearchString" value="@ViewData["currentFilter"]" placeholder="Search" /><br />
+            <input type="submit" value="Search" />
         </div>
     </form>
 </div>
@@ -15,87 +16,72 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                BannerID
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.KeyRequest.Requestor)
+                Department
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.KeyRequest.Id)
+                Email
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.KeyRequest.ApplicationUser.BannerID)
+                Requested Room
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.KeyRequest.ApplicationUser.Campus)
+                Type
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.KeyRequest.ApplicationUser.Department)
+                Reason
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.KeyRequest.ApplicationUser.Room)
+                Creation Date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RoomID)
+                Request Approved
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Room.Code)
+                Completed Date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Room.Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.KeyRequest.Creation_Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CompletedDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApprovalDate)
+                Status
             </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KeyRequest.Requestor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KeyRequestId)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.KeyRequest.ApplicationUser.BannerID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Room)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KeyRequest.Creation_Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompletedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApprovalDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Room.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Room.Code)
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KeyRequest.ApplicationUser.BannerID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KeyRequest.ApplicationUser.Department)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KeyRequest.ApplicationUser.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReasonForAccess)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KeyRequest.Creation_Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApprovalDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompletedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.status)
+                </td>
+            </tr>
         }
     </tbody>
 </table>
