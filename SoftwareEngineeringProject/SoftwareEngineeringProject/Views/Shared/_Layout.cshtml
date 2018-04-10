@@ -46,6 +46,10 @@
                         <li><a id="a" asp-area="" asp-controller="Approve" asp-action="Approve">Approve Keys</a></li>
                         <li><a id="a" asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
                     }
+                    @if (User.IsInRole("security") || User.IsInRole("locksmith"))
+                    {
+                        <li><a id="a" asp-area="" asp-controller="Approve" asp-action="Approve">Approve Keys</a></li>
+                    }
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>

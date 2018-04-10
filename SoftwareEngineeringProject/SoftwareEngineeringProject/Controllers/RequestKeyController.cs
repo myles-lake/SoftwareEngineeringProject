@@ -7,9 +7,11 @@ using SoftwareEngineeringProject.Data;
 using Microsoft.Extensions.DependencyInjection;
 using SoftwareEngineeringProject.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SoftwareEngineeringProject.Controllers
 {
+    [Authorize]
     public class RequestKeyController : Controller
     {
         ApplicationDbContext applicationDbContext;
