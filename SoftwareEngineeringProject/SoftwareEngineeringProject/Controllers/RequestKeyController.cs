@@ -58,11 +58,15 @@ namespace SoftwareEngineeringProject.Controllers
                 {
                     KeyRequestId = applicationDbContext.KeyRequest
                         .Where(k => k.Requestor == user.BannerID)
+                        .Where(c => c.Creation_Date == keyRequest.Creation_Date)
                         .FirstOrDefault()
-                        .Requestor,
+                        .Id,
                     RoomID = roomNumber[i],
                     status = "waiting for approval",
-                    ReasonForAccess = reasonForAccess[i]
+                    ReasonForAccess = reasonForAccess[i],
+                    Campus = campus[i],
+                    ApprovalDate = null,
+                    CompletedDate = null
                 };
                 applicationDbContext.KeyRequestLines.Add(keyRequestLine);
                 await applicationDbContext.SaveChangesAsync();

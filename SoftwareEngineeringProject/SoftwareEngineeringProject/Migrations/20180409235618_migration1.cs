@@ -276,7 +276,7 @@ namespace SoftwareEngineeringProject.Migrations
                 name: "IX_KeyRequestLines_RoomID",
                 table: "KeyRequestLines",
                 column: "RoomID",
-                unique: true,
+                unique: false,
                 filter: "[RoomID] IS NOT NULL");
         }
 

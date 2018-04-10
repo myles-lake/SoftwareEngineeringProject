@@ -134,16 +134,34 @@ namespace SoftwareEngineeringProject.Data
             {
                 var temp = context.KeyRequest.Select(i => i.Id).ToList();
 
-                var KeyRequestLines = new KeyRequestLines[2];
-                //{
-                //    new KeyRequestLines{ KeyRequestId = 2007, ApprovalDate = DateTime.Now,status = "Approved, Waiting to be cut!",RoomID = "E201",CompletedDate = DateTime.UtcNow},
-                //    new KeyRequestLines{ KeyRequestId = 2008,ApprovalDate = DateTime.Now,status = "Waiting for approval",RoomID = "E201",CompletedDate = DateTime.UtcNow}
-
-                //};
+                int counter = 1;
 
                 foreach (var item in temp)
                 {
-                    context.KeyRequestLines.Add(new Data.KeyRequestLines { KeyRequestId = item, ApprovalDate = DateTime.Now, status = "Approved, Waiting to be cut!", RoomID = "E201", CompletedDate = DateTime.UtcNow });
+                    if (counter == 1)
+                    {
+                        context.KeyRequestLines.Add(new Data.KeyRequestLines
+                        {
+                            KeyRequestId = item,
+                            ApprovalDate = DateTime.Now,
+                            status = "Approved, Waiting to be cut!",
+                            RoomID = "E203",
+                            CompletedDate = DateTime.UtcNow
+                        });
+                        counter++;
+                    }
+                    else
+                    {
+                        context.KeyRequestLines.Add(new Data.KeyRequestLines
+                        {
+                            KeyRequestId = item,
+                            ApprovalDate = DateTime.Now,
+                            status = "Approved, Waiting to be cut!",
+                            RoomID = "E204",
+                            CompletedDate = DateTime.UtcNow
+                        });
+                    }
+                    
                 }
 
                 context.SaveChanges();

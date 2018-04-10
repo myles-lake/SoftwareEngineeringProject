@@ -22,19 +22,7 @@ namespace SoftwareEngineeringProject.Data
             base.OnModelCreating(builder);
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
-            // Add your customizations after calling base.OnModelCreating(builder);
-
-            //builder.Entity<Room>()
-            //    .HasAlternateKey(r => r.RoomID);
-
-            //builder.Entity<KeyRequestLines>()
-            //    .HasOne(krl => krl.Rooms)
-            //    .WithOne(r => r.KeyRequestLines)
-            //    .HasForeignKey<KeyRequestLines>(krl => krl.Room)
-            //    .HasPrincipalKey<Room>(r => r.RoomID);
-
-            
-            
+            // Add your customizations after calling base.OnModelCreating(builder);            
         }
         // makes the room table
         public DbSet<Room> Rooms { get; set; }
@@ -84,10 +72,10 @@ namespace SoftwareEngineeringProject.Data
         [ForeignKey("KeyRequestId")]
         public KeyRequest KeyRequest { get; set; }
         public int KeyRequestId { get; set; }
+        
+        public System.Nullable<DateTime> CompletedDate { get; set; }
 
-        public DateTime CompletedDate { get; set; }
-
-        public DateTime ApprovalDate { get; set; }
+        public System.Nullable<DateTime> ApprovalDate { get; set; }
 
         public string status { get; set; }
         
@@ -95,6 +83,7 @@ namespace SoftwareEngineeringProject.Data
         public string RoomID { get; set; }
 
         public string ReasonForAccess { get; set; }
+        public string Campus { get; set; }
 
     }
 

@@ -11,9 +11,10 @@ using System;
 namespace SoftwareEngineeringProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180410004438_migration2")]
+    partial class migration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -151,11 +152,11 @@ namespace SoftwareEngineeringProject.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime?>("ApprovalDate");
+                    b.Property<DateTime>("ApprovalDate");
 
                     b.Property<string>("Campus");
 
-                    b.Property<DateTime?>("CompletedDate");
+                    b.Property<DateTime>("CompletedDate");
 
                     b.Property<int>("KeyRequestId");
 
