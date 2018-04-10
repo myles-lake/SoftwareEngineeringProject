@@ -69,7 +69,7 @@ namespace SoftwareEngineeringProject.Controllers
                            .FirstOrDefault()
                            .Id,
                         RoomID = roomNumber[i],
-                        status = "waiting for approval",
+                        status = "Waiting for approval.",
                         ReasonForAccess = reasonForAccess[i],
                         Campus = campus[i],
                         ApprovalDate = null,
