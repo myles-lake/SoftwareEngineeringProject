@@ -107,7 +107,7 @@ namespace SoftwareEngineeringProject.Data
                 context.SaveChanges();
             }
 
-            
+
 
             //Key Request
             if (!context.KeyRequest.Any())
@@ -115,8 +115,8 @@ namespace SoftwareEngineeringProject.Data
                 var temp = context.Users.FirstOrDefault();
                 var KeyRequest = new KeyRequest[]
                 {
-                    new KeyRequest{ Creation_Date=System.DateTime.Now, Requestor=000123123, UserId=temp.Id},
-                    new KeyRequest{ Creation_Date=System.DateTime.Now, Requestor=000123123, UserId=temp.Id}
+                    new KeyRequest{ Creation_Date=System.DateTime.Now, Requestor=000123123, UserId=temp.Id,ApplicationUser = temp},
+                    new KeyRequest{ Creation_Date=System.DateTime.Now, Requestor=000123123, UserId=temp.Id,ApplicationUser = temp}
 
                 };
 
@@ -161,7 +161,7 @@ namespace SoftwareEngineeringProject.Data
                             CompletedDate = DateTime.UtcNow
                         });
                     }
-                    
+
                 }
 
                 context.SaveChanges();
