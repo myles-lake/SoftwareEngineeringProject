@@ -16,9 +16,6 @@
     <thead>
         <tr>
             <th>
-                Request ID
-            </th>
-            <th>
                 BannerID
             </th>
             <th>
@@ -31,7 +28,7 @@
                 Requested Room
             </th>
             <th>
-                Type
+                Access Type
             </th>
             <th>
                 Reason
@@ -40,7 +37,7 @@
                 Creation Date
             </th>
             <th>
-                Request Approved
+                Request Approved/Declined Date
             </th>
             <th>
                 Completed Date
@@ -54,9 +51,6 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.KeyRequest.Id)
-                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.KeyRequest.ApplicationUser.BannerID)
                 </td>

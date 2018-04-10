@@ -17,10 +17,12 @@ namespace SoftwareEngineeringProject.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IServiceProvider service;
+        private UserManager<ApplicationUser> userManager; 
         public ApproveController(ApplicationDbContext application, IServiceProvider service)
         {
             _context = application;
             this.service = service;
+            userManager = service.GetService<UserManager<ApplicationUser>>();
         }
         public IActionResult Index()
         {
@@ -29,28 +31,75 @@ namespace SoftwareEngineeringProject.Controllers
 
         public async Task<IActionResult> Approve()
         {
-            var userManager = service.GetService<UserManager<ApplicationUser>>();
             var user = await userManager.GetUserAsync(HttpContext.User);
             var data = _context.KeyRequestLines
                .Include(krl => krl.Room)
                .Include(krl => krl.KeyRequest)
                    .ThenInclude(kr => kr.ApplicationUser)
                             .Where(l => l.KeyRequest.ApplicationUser.AssociateDeanID == user.BannerID
-                            && l.ApprovalDate == null);
+                                     && l.ApprovalDate == null);
 
-            
+            var isLocksmith = await userManager.IsInRoleAsync(user, "locksmith");
+            var isSecurity = await userManager.IsInRoleAsync(user, "security");
+            if (isLocksmith)
+            {
+                data = _context.KeyRequestLines
+                   .Include(krl => krl.Room)
+                   .Include(krl => krl.KeyRequest)
+                       .ThenInclude(kr => kr.ApplicationUser)
+                                .Where(l => l.ApprovalDate != null
+                                         && l.Room.Type == "Key");
+            }
+            if (isSecurity)
+            {
+                data = _context.KeyRequestLines
+                   .Include(krl => krl.Room)
+                   .Include(krl => krl.KeyRequest)
+                       .ThenInclude(kr => kr.ApplicationUser)
+                                .Where(l => l.ApprovalDate != null
+                                         && (l.Room.Type == "Code"
+                                         || l.Room.Type == "Card"));
+            }
 
-            return View(await data.ToListAsync());
+
+
+            return View(await data.AsNoTracking().ToListAsync());
         }
 
         public async Task<IActionResult> ApproveKey(int id)
         {
             var entity = _context.KeyRequestLines.FirstOrDefault(krl => krl.Id == id);
+            var user = await userManager.GetUserAsync(HttpContext.User);
             if (entity != null)
             {
-                entity.ApprovalDate = DateTime.Now;
-                entity.status = "Approved";
+                var isLocksmith = await userManager.IsInRoleAsync(user, "locksmith");
+                var isSecurity = await userManager.IsInRoleAsync(user, "security");
+                var isAdmin = await userManager.IsInRoleAsync(user, "admin");
+                if (isAdmin)
+                {
+                    entity.ApprovalDate = DateTime.Now;
+                    if (entity.Room.Type == "Key")
+                    {
+                        entity.status = "Awaiting to be cut";
+                    }
+                    else
+                    {
+                        entity.status = "Permissions being approved";
+                    }
+                    
+                }
+                if (isLocksmith)
+                {
+                    entity.CompletedDate = DateTime.Now;
+                    entity.status = "Approved, key cut";
+                }
+                if (isSecurity)
+                {
+                    entity.CompletedDate = DateTime.Now;
+                    entity.status = "Approved, permissions applied";
+                }
                 _context.KeyRequestLines.Update(entity);
+
                 await _context.SaveChangesAsync();
             }
 
@@ -62,6 +111,7 @@ namespace SoftwareEngineeringProject.Controllers
             var entity = _context.KeyRequestLines.FirstOrDefault(krl => krl.Id == id);
             if (entity != null)
             {
+                entity.ApprovalDate = DateTime.Now;
                 entity.status = "Dissapproved";
                 _context.KeyRequestLines.Update(entity);
                 await _context.SaveChangesAsync();

@@ -48,15 +48,15 @@ namespace SoftwareEngineeringProject.Controllers
                      .Include(krl => krl.KeyRequest)
                          .ThenInclude(kr => kr.ApplicationUser)
                       .Where(krl => krl.KeyRequest.ApplicationUser.BannerID.ToString().Contains(searchString)
-                            || krl.KeyRequest.ApplicationUser.Department.Contains(searchString)
-                            || krl.KeyRequest.ApplicationUser.Email.Contains(searchString)
-                            || krl.RoomID.Contains(searchString)
-                            || krl.Room.Type.Contains(searchString)
-                            || krl.ReasonForAccess.Contains(searchString)
-                            || krl.KeyRequest.Creation_Date.ToString().Contains(searchString)
-                            || krl.ApprovalDate.ToString().Contains(searchString)
-                            || krl.CompletedDate.ToString().Contains(searchString)
-                            || krl.status.Contains(searchString));
+                                 || krl.KeyRequest.ApplicationUser.Department.Contains(searchString)
+                                 || krl.KeyRequest.ApplicationUser.Email.Contains(searchString)
+                                 || krl.RoomID.Contains(searchString)
+                                 || krl.Room.Type.Contains(searchString)
+                                 || krl.ReasonForAccess.Contains(searchString)
+                                 || krl.KeyRequest.Creation_Date.ToString().Contains(searchString)
+                                 || krl.ApprovalDate.ToString().Contains(searchString)
+                                 || krl.CompletedDate.ToString().Contains(searchString)
+                                 || krl.status.Contains(searchString));
                 return View(await data.AsNoTracking().ToListAsync());
             }
             else
