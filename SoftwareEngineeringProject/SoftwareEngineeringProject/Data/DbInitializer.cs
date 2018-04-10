@@ -24,7 +24,7 @@ namespace SoftwareEngineeringProject.Data
                     Email = "admin@mohawkcollege.ca",
                     PhoneNumber = "905-555-5555",
                     UserName = "admin@mohawkcollege.ca",
-                    AssociateDeanID = 0,
+                    AssociateDeanID = 000123123,
                     BannerID = 000123123,
                     Campus = "Fennell",
                     Department = "Software Engineering",
@@ -58,7 +58,7 @@ namespace SoftwareEngineeringProject.Data
                     Email = "security@mohawkcollege.ca",
                     PhoneNumber = "905-555-5555",
                     UserName = "security@mohawkcollege.ca",
-                    AssociateDeanID = 0,
+                    AssociateDeanID = 000123123,
                     BannerID = 000222222,
                     Campus = "Fennell",
                     Department = "Security",
@@ -75,7 +75,7 @@ namespace SoftwareEngineeringProject.Data
                     Email = "locksmith@mohawkcollege.ca",
                     PhoneNumber = "905-555-5555",
                     UserName = "locksmith@mohawkcollege.ca",
-                    AssociateDeanID = 0,
+                    AssociateDeanID = 000123123,
                     BannerID = 000333333,
                     Campus = "Fennell",
                     Department = "Locksmithing",
@@ -146,7 +146,11 @@ namespace SoftwareEngineeringProject.Data
                             ApprovalDate = DateTime.Now,
                             status = "Approved, Waiting to be cut!",
                             RoomID = "E203",
-                            CompletedDate = DateTime.UtcNow
+                            CompletedDate = DateTime.UtcNow,
+                            Campus = "Fennel",
+                            ReasonForAccess = "Class",
+                            
+                            
                         });
                         counter++;
                     }
@@ -158,7 +162,9 @@ namespace SoftwareEngineeringProject.Data
                             ApprovalDate = DateTime.Now,
                             status = "Approved, Waiting to be cut!",
                             RoomID = "E204",
-                            CompletedDate = DateTime.UtcNow
+                            CompletedDate = DateTime.UtcNow,
+                            Campus= "Fennel",
+                            ReasonForAccess = "Class"
                         });
                     }
 
